@@ -1,0 +1,148 @@
+@import 'src/assets/styles/mixins';
+@import 'src/assets/styles/variables';
+
+.wrapper {
+  @include column;
+  align-items: self-start;
+  width: 100%;
+}
+
+.line {
+  @include space-between;
+}
+
+.buttonRoot {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 15px $indent !important;
+  border-radius: 0 !important;
+  gap: 10px;
+  transition: 0s !important;
+
+  & :global(.MuiTouchRipple-child) {
+    background-color: var(--ripple) !important;
+  }
+
+  &:global(.MuiButtonBase-root):hover {
+    background: var(--gray-hover);
+  }
+
+  &:global(.MuiButtonBase-root).active {
+    background: var(--gray-focused);
+  }
+
+  .column {
+    @include column;
+    width: 100%;
+  }
+}
+
+.cut {
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.text {
+  display: flex;
+  width: 100%;
+  gap: 3px;
+  max-width: calc(25vw - #{$indent} * 2 - 48px - 45px);
+  @media (max-width: 1250px) {
+    max-width: calc(33.333vw - #{$indent} * 2 - 48px - 45px);
+  }
+  @media (max-width: 950px) {
+    max-width: calc(320px - #{$indent} * 2 - 48px - 45px);
+  }
+  @media (max-width: 850px) {
+    max-width: calc(100vw - #{$indent} * 2 - 48px - 45px);
+  }
+}
+
+
+
+.titleContainer {
+  display: flex;
+  gap: 5px;
+  svg {
+    fill: var(--bg-block-3);
+    width: 20px;
+  }
+}
+
+.notice {
+  width: 7px;
+  height: 7px;
+  margin: 6px;
+}
+
+.searchContainer {
+  padding:  $indent*0.25 $indent $indent*0.6;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  .svg {
+    width: 20px;
+    fill: var(--text-secondary)
+  }
+}
+
+.search {
+  :global(.MuiOutlinedInput-notchedOutline) {
+    border-color: var(--border-primary);
+    border-radius: 16px;
+  }
+
+  :global(.MuiInputBase-root) {
+    height: 40px;
+  }
+  :global(.MuiInputBase-root):hover {
+    :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--bg-block-3);
+    }
+  }
+
+  :global(.MuiInputBase-input) {
+    font-family: 'Mulish', sans-serif;
+    color: var(--text-primary);
+    padding-left: 10px;
+    &::placeholder {
+      color: var(--text-tertiary);
+      opacity: 1;
+    }
+  }
+
+  :global(.Mui-focused) {
+    :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--primary) !important;
+    }
+
+    .searchIcon {
+      fill: var(--primary);
+    }
+  }
+
+  .searchIcon {
+    fill: var(--text-tertiary);
+    height: 20px;
+  }
+}
+
+.dialogsHeader {
+  align-items: center;
+  display: flex;
+  width: 100%;
+  gap: 16.41px;
+}
+
+.badgeContainer {
+  min-width: 30px;
+  @include center;
+}
+
+.menu {
+  width: 250px;
+}

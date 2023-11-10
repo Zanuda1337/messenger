@@ -1,0 +1,15 @@
+@import 'src/assets/styles/mixins';
+
+.iconButton {
+  width: 28px;
+  fill: var(--text-secondary);
+  &.light {
+    fill: var(--text-secondary-light);
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}

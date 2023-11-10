@@ -1,13 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="41d6df89-7c54-4f47-b456-4e9d7dce311c" name="Default Changelist" comment="" />
+    <list default="true" id="41d6df89-7c54-4f47-b456-4e9d7dce311c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.eslintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Zanuda.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/dark_theme.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/functions.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/global.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/light_theme.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/mixins.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/reset.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/styles/variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/badge/Badge.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/badge/Badge.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/burgerArrowIcon/BurgerArrowIcon.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/burgerArrowIcon/BurgerArrowIcon.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/chatInput/ChatInput.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/chatInput/ChatInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customAvatar/CustomAvatar.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customAvatar/CustomAvatar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customIconButton/CustomIconButton.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customIconButton/CustomIconButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customMenu/CustomMenu.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customMenu/CustomMenu.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customPopper/CustomPopper.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customPopper/CustomPopper.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/scroll/Scroll.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/scroll/Scroll.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/svgSelector/SvgSelector.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/typography/Typography.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chat/Chat.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chat/Chat.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chat/Message.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chat/user/User.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chat/user/User.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chat/user/profilePicture/ProfilePicture.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chat/user/profilePicture/ProfilePicture.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/dialogs/Dialogs.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/dialogs/Dialogs.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/dialogs/Dialogue.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/messenger/Messenger.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/messenger/Messenger.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/PrivateLayout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/Router.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/counter/Counter.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/counter/Counter.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/counter/counterAPI.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/counter/counterSlice.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/counter/counterSlice.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reportWebVitals.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="ProjectId" id="2XJea9x7aC3NpKRhZZjiFW80Cga" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -15,8 +99,47 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="js.linters.configure.manually.selectedeslint" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="C:\Users\Zanuda\Documents\Projects\messenger\node_modules\eslint" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\Zanuda\AppData\Roaming\npm\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="ts.external.directory.path" value="C:\Users\Zanuda\Documents\Projects\messenger\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Zanuda\Documents\Projects\messenger\src\features\chat\user" />
+      <recent name="C:\Users\Zanuda\Documents\Projects\messenger\src\assets\images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Zanuda\Documents\Projects\messenger\src\components" />
+      <recent name="C:\Users\Zanuda\Documents\Projects\messenger\src\assets\styles" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -28,11 +151,91 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1698351671862</updated>
-      <workItem from="1698351687901" duration="298000" />
+      <workItem from="1698351687901" duration="4523000" />
+      <workItem from="1698356858811" duration="1121000" />
+      <workItem from="1698357995558" duration="1359000" />
+      <workItem from="1698359388800" duration="248000" />
+      <workItem from="1698359715534" duration="84000" />
+      <workItem from="1698359805864" duration="130000" />
+      <workItem from="1698359942298" duration="296000" />
+      <workItem from="1698360247788" duration="107000" />
+      <workItem from="1698360361699" duration="3660000" />
+      <workItem from="1698364114721" duration="412000" />
+      <workItem from="1698364540800" duration="166000" />
+      <workItem from="1698364712785" duration="133000" />
+      <workItem from="1698364851968" duration="106000" />
+      <workItem from="1698364964716" duration="144000" />
+      <workItem from="1698365122583" duration="108000" />
+      <workItem from="1698365236757" duration="929000" />
+      <workItem from="1698397887467" duration="10066000" />
+      <workItem from="1698599801521" duration="7122000" />
+      <workItem from="1698607992951" duration="9676000" />
+      <workItem from="1698660427119" duration="4000" />
+      <workItem from="1698660447509" duration="772000" />
+      <workItem from="1698662687705" duration="276000" />
+      <workItem from="1698663036948" duration="5122000" />
+      <workItem from="1698765696701" duration="19460000" />
+      <workItem from="1698829360134" duration="21057000" />
+      <workItem from="1698943044337" duration="10516000" />
+      <workItem from="1699291790324" duration="7840000" />
+      <workItem from="1699300167211" duration="53110000" />
+      <workItem from="1699430799143" duration="13142000" />
+      <workItem from="1699465576408" duration="8762000" />
+      <workItem from="1699511748489" duration="15571000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="702" y="325" key="#ESLint" timestamp="1699304238970">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="702" y="325" key="#ESLint/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1699304238970" />
+    <state x="690" y="308" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1698352745437">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="690" y="308" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698352745437" />
+    <state x="740" y="315" key="FileChooserDialogImpl" timestamp="1699432720465">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="740" y="315" key="FileChooserDialogImpl/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1699432720465" />
+    <state width="1899" height="215" key="GridCell.Tab.0.bottom" timestamp="1699535826864">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="215" key="GridCell.Tab.0.bottom/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1699535826864" />
+    <state width="1899" height="215" key="GridCell.Tab.0.center" timestamp="1699535826864">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="215" key="GridCell.Tab.0.center/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1699535826864" />
+    <state width="1899" height="215" key="GridCell.Tab.0.left" timestamp="1699535826864">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="215" key="GridCell.Tab.0.left/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1699535826864" />
+    <state width="1899" height="215" key="GridCell.Tab.0.right" timestamp="1699535826864">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="215" key="GridCell.Tab.0.right/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1699535826864" />
+    <state x="476" y="206" key="SettingsEditor" timestamp="1698360092273">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="476" y="206" key="SettingsEditor/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698360092273" />
+    <state x="1316" y="190" width="579" height="516" key="find.popup" timestamp="1699325244428">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="1316" y="190" width="579" height="516" key="find.popup/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1699325244428" />
   </component>
 </project>

@@ -1,0 +1,123 @@
+@import 'src/assets/styles/mixins';
+@import 'src/assets/styles/variables';
+
+.wrapper {
+  @include column;
+  width: 100%;
+  justify-content: space-between;
+  position: relative;
+  height: 100%;
+}
+
+.messages {
+  @include column;
+  width: 100%;
+  flex: 1;
+}
+
+.container {
+  max-width: 710px + $indent*2;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 $indent;
+  &.mobile {
+    padding: 0;
+  }
+}
+
+.messageWrapper {
+  //margin-left: 45px;
+  display: flex;
+  gap: 10px;
+  max-width: 70%;
+  &.own {
+    justify-content: flex-end;
+    margin-left: auto;
+    .message {
+      background: var(--gray-focused);
+      border-radius: 12px 12px 0 12px;
+    }
+  }
+  &.fullRadius {
+    .message {
+      border-radius: 12px;
+    }
+  }
+}
+
+.message {
+  @include column;
+  gap: 10px;
+  background: var(--bg-secondary);
+  padding: 7px 10px;
+  border-radius: 12px 12px 12px 0;
+}
+.messageTypography {
+  line-height: 1.25;
+}
+
+.date {
+  margin: -3px;
+  margin-left: auto;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  height: 14px;
+  p {
+    line-height: 0;
+  }
+}
+
+.icon {
+  fill: var(--text-primary);
+  height: 100%;
+}
+
+.scroll {
+  & > div {
+    inset: auto 0 0 0 !important;
+  }
+}
+
+.block {
+  @include column;
+  gap: 6px;
+  padding: 6px 0;
+  width: 100%;
+}
+
+.blockWrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.avatarContainer {
+  @include column;
+  padding: 6px 0;
+}
+
+.avatar {
+  position: sticky !important;
+  bottom: 5px;
+}
+
+.badge {
+  @include center;
+  padding: 0 5px;
+}
+.header {
+  z-index: 1;
+  box-shadow: 10px 0 5px 4px var(--shadow);
+}
+
+.chatLabel {
+  display: flex;
+  gap: 10px;
+}
+
+.textContainer {
+  @include column;
+  @include space-between;
+  padding: 2px 0;
+}
+

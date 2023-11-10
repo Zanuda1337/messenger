@@ -1,0 +1,45 @@
+.root {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  transition: .25s ease-in-out;
+
+  & > div {
+    transition: inherit;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--text-tertiary);
+    left: 0;
+    margin: auto;
+    &:first-child {
+      top: 3px;
+    }
+    &:nth-child(2) {
+      top: 0;
+      bottom: 0;
+    }
+    &:last-child {
+      bottom: 3px;
+    }
+  }
+  &.arrow {
+    transform: rotate(180deg);
+    & > div {
+      &:first-child {
+        width: 50%;
+        left: 50%;
+        transform: rotate(45deg);
+        top: 5px;
+      }
+      &:nth-child(2) {
+      }
+      &:last-child {
+        width: 50%;
+        left: 50%;
+        bottom: 5px;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

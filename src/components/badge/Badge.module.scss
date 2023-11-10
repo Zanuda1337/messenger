@@ -1,0 +1,20 @@
+@import 'src/assets/styles/mixins';
+
+.circle {
+  @include center;
+  border-radius: 100%;
+  background: var(--primary);
+  width: 6px;
+  height: 6px;
+}
+
+.standard {
+  border-radius: 10px;
+  padding: 0 6px;
+  height: 20px;
+  min-width: 20px;
+
+  &.pale {
+    background: var(--text-tertiary);
+  }
+}

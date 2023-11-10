@@ -1,0 +1,33 @@
+@import 'src/assets/styles/mixins';
+
+.root {
+  width: 100% !important;
+  height: 100% !important;
+
+  & :global(.MuiTouchRipple-child) {
+    background-color: var(--ripple) !important;
+  }
+  &:global(.MuiButtonBase-root):hover {
+    background: var(--gray-hover);
+  }
+
+  &:global(.MuiButtonBase-root):focus-visible {
+    background: var(--gray-focused);
+  }
+}
+
+.progress {
+  @include absolute-center;
+  pointer-events: none;
+
+  &.color {
+    color: var(--border-primary);
+  }
+}
+
+.container {
+  @include center;
+  position: relative;
+  width: 40px;
+  height: 40px;
+}

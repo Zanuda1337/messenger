@@ -1,0 +1,19 @@
+.scroll {
+  & > div {
+    //scroll-behavior: smooth;
+  }
+}
+
+.track-horizontal {
+}
+.track-vertical {
+  right: 3px;
+  height: 100%;
+}
+.thumb-horizontal {
+}
+.thumb-vertical {
+  background: var(--scrollbar);
+  border-radius: 1px;
+  width: 50px;
+}

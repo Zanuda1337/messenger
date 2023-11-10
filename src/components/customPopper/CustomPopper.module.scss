@@ -1,0 +1,11 @@
+.tooltip {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: unset !important;
+  max-width: max-content !important;
+}
+
+.content {
+  box-shadow: 2px 1px 9px 2px var(--shadow);
+  border-radius: 12px;
+}
