@@ -1,0 +1,121 @@
+*,
+*:after,
+*:before {
+  font-family: "Jost", sans-serif;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--bg-primary);
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 56px;
+  background: var(--bg-secondary);
+  align-items: center;
+}
+
+main, .main-top {
+  display: flex;
+  flex: 3;
+}
+
+main, aside {
+  height: calc(100vh - 56px);
+}
+
+aside, .aside-top {
+  display: flex;
+  flex: 1;
+  background: var(--bg-secondary);
+}
+
+aside {
+  border-right: 1px solid var(--border);
+}
+
+:root {
+  --violet: #d313e5;
+  --blue: #066aff;
+  --red: #e15252;
+  --orange: #f2874b;
+  --yellow: #f9f02c;
+  --green: #56e513;
+  --aqua: #4fe1d8;
+  --pink: #fdb1ec;
+  --main-background: #ffffff;
+  --background: #f0f4fb;
+  --main: #0e1f54;
+  --foreground: #7e8db7;
+  --default-icon: #7e8db7;
+  --shadow: rgba(126, 141, 183, 0.2);
+  --main-text: #0e1f54;
+  --progress: #d7ddec;
+  --white: #ffffff;
+  --shadow-blue: rgba(6, 106, 255, 0.25);
+  --checkbox: #7e8db7;
+  --hover: rgba(126, 141, 183, 0.1);
+  --nabvar-background: #0e1f54;
+  --navbar-hover: rgba(9, 19, 52, 0.16);
+  --navbar-icon: #526496;
+  --navbar-title: rgba(255, 255, 255, 0.8);
+  --navbar-active: rgba(0, 0, 0, 0.15);
+  --empty-message: #bbc5e3;
+  --opposite-background: #171a1f;
+  --auth-shadow: rgba(126, 141, 183, 0.2);
+  --helper-text-shadow: rgba(126, 141, 183, 0.5);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #191c1c;
+    --bg-secondary: rgb(33, 33, 33);
+    --border: rgb(50, 50, 50);
+    color-scheme: dark;
+  }
+}
+:root[color-scheme=light] {
+  --violet: #d313e5;
+  --blue: #066aff;
+  --red: #e15252;
+  --orange: #f2874b;
+  --yellow: #f9f02c;
+  --green: #56e513;
+  --aqua: #4fe1d8;
+  --pink: #fdb1ec;
+  --main-background: #ffffff;
+  --background: #f0f4fb;
+  --main: #0e1f54;
+  --foreground: #7e8db7;
+  --default-icon: #7e8db7;
+  --shadow: rgba(126, 141, 183, 0.2);
+  --main-text: #0e1f54;
+  --progress: #d7ddec;
+  --white: #ffffff;
+  --shadow-blue: rgba(6, 106, 255, 0.25);
+  --checkbox: #7e8db7;
+  --hover: rgba(126, 141, 183, 0.1);
+  --nabvar-background: #0e1f54;
+  --navbar-hover: rgba(9, 19, 52, 0.16);
+  --navbar-icon: #526496;
+  --navbar-title: rgba(255, 255, 255, 0.8);
+  --navbar-active: rgba(0, 0, 0, 0.15);
+  --empty-message: #bbc5e3;
+  --opposite-background: #171a1f;
+  --auth-shadow: rgba(126, 141, 183, 0.2);
+  --helper-text-shadow: rgba(126, 141, 183, 0.5);
+  color-scheme: light;
+}
+
+:root[color-scheme=dark] {
+  --bg-primary: #191c1c;
+  --bg-secondary: rgb(33, 33, 33);
+  --border: rgb(50, 50, 50);
+  color-scheme: dark;
+}
+
+/*# sourceMappingURL=global.css.map */
