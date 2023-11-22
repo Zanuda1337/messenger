@@ -7,7 +7,7 @@ $light-theme: (
     border: #CDD5DE,
     border-primary: #CDD5DE,
     text-primary: #303b49,
-    text-primary-light: #c7d0d4,
+    text-primary-light: #e4eaec,
     text-secondary: #616C76,
     text-secondary-light: #abbbc9,
     text-tertiary: #8FA0AF,
@@ -18,4 +18,5 @@ $light-theme: (
     ripple: rgba(114, 173, 246, 0.3),
     shadow: rgba(187, 188, 194, 0.5),
     scrollbar: rgba(195, 200, 206, 0.6),
+    bg-snackbar: rgba(23,23,23,0.5)
 );

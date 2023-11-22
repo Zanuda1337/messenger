@@ -13,8 +13,8 @@ import { Scrollbars } from 'react-custom-scrollbars-2';
 import Scroll from 'src/components/scroll/Scroll';
 import CustomAvatar from 'src/components/customAvatar/CustomAvatar';
 import clsx from 'clsx';
-import { Link, useLocation, useNavigate, useOutlet } from 'react-router-dom';
-import { useDevice, useKeydown } from 'src/hooks';
+import { Link, useLocation, useOutlet } from 'react-router-dom';
+import { useDevice } from 'src/hooks';
 import {
   CSSTransition,
   SwitchTransition,
@@ -306,11 +306,6 @@ const Chat: React.FC = () => {
     current.scrollToBottom();
   }, [scrollRef, messagesData]);
 
-  const navigate = useNavigate();
-  useKeydown('Escape', () => {
-    navigate('/');
-  });
-
   return (
     <>
       <div className={classes.wrapper}>
@@ -404,10 +399,10 @@ const Chat: React.FC = () => {
           timeout={300}
           classNames={'right-block'}
           // in={location.pathname === '/1/user'}
-          in={location.pathname === '/1/user'}
-          key={location.pathname}
+          in={location.pathname.includes('1/user')}
+          key={location.pathname.split('/').at(2) ?? ''}
         >
-          {location.pathname === '/1/user' ? (
+          {location.pathname.includes('1/user') ? (
             <div
               className={'right-block'}
               ref={nodeRef as RefObject<HTMLDivElement>}

@@ -48,6 +48,12 @@ export const routes = [
         element: <User />,
         nodeRef: createRef(),
       },
+      // {
+      //   path: 'user/edit',
+      //   name: 'Edit',
+      //   element: <Chat />,
+      //   nodeRef: createRef(),
+      // },
     ],
     nodeRef: createRef(),
   },
@@ -75,6 +81,7 @@ export const router = createBrowserRouter(
       <Route path="/" element={<Messenger />}>
         <Route path={':id'} element={<Chat />}>
           <Route path={'user'} element={<User />} />
+          <Route path={'user/edit'} element={<div>loh</div>} />
         </Route>
       </Route>
     </Route>

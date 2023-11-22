@@ -1,0 +1,15 @@
+.snackbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  height: 45px;
+  padding: 10px;
+  background-color: var(--bg-snackbar);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  min-width: 300px;
+  svg {
+    width: 25px;
+    fill: var(--text-primary-light);
+  }
+}

@@ -11,7 +11,8 @@ import { useDevice, useKeydown } from 'src/hooks';
 import CustomIconButton from 'src/components/customIconButton/CustomIconButton';
 import CustomAvatar from 'src/components/customAvatar/CustomAvatar';
 import { clamp } from 'src/utils';
-import Draggable from 'react-draggable';
+import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
+import { Vector2 } from 'src/types';
 
 const MAX_IMAGES_ITEMS = 5;
 const ZOOM_STEP = 0.7;
@@ -44,6 +45,23 @@ const generatePagination = (
   return items;
 };
 
+const initialRect = {
+  width: 0,
+  bottom: 0,
+  height: 0,
+  left: 0,
+  right: 0,
+  top: 0,
+  x: 0,
+  y: 0,
+  toJSON: () => {},
+};
+
+const initialCoords = {
+  x: 0,
+  y: 0,
+};
+
 interface Image {
   url: string;
 }
@@ -58,19 +76,11 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
   const [activeModalIndex, setActiveModalIndex] = useState(0);
   const [zoomFactor, setZoomFactor] = useState(1);
   const imageContainerRef = useRef<HTMLDivElement>(null);
-  const [imageSize, setImageSize] = useState<DOMRect>({
-    width: 0,
-    bottom: 0,
-    height: 0,
-    left: 0,
-    right: 0,
-    top: 0,
-    x: 0,
-    y: 0,
-    toJSON: () => {},
-  });
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [transformMode, setTransformMode] = useState(false);
+  const [imageSize, setImageSize] = useState<DOMRect>(initialRect);
+  const [pictureSize, setPictureSize] = useState<DOMRect | null>(null);
+  const [draggablePos, setDraggablePos] = useState<Vector2 | undefined>(
+    initialCoords
+  );
   const [open, setOpen] = useState(false);
   const [direction, setDirection] = useState(1);
   const currentImage = images[activeIndex];
@@ -95,6 +105,11 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
       window.removeEventListener('resize', handleResize);
     };
   }, [imageContainerRef]);
+
+  useEffect(() => {
+    setDraggablePos(initialCoords);
+    setPictureSize(null);
+  }, [zoomFactor]);
 
   const handleOpen = (): void => {
     setOpen(true);
@@ -127,6 +142,16 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
   };
   const handleZoomOut = (): void => {
     handleChangeZoom(zoomFactor - ZOOM_STEP);
+  };
+
+  const handleStartDrag = (
+    event: DraggableEvent,
+    data: DraggableData
+  ): void => {
+    setDraggablePos(undefined);
+    if (pictureSize === null) {
+      setPictureSize(data.node.getBoundingClientRect());
+    }
   };
 
   useKeydown('ArrowLeft', handleModalPrev);
@@ -259,6 +284,24 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
                         <Draggable
                           disabled={zoomFactor <= 1}
                           scale={zoomFactor}
+                          position={draggablePos}
+                          axis={
+                            (pictureSize?.width ?? 0) > width ? 'both' : 'y'
+                          }
+                          bounds={{
+                            bottom:
+                              ((pictureSize?.height ?? 0) -
+                                (pictureSize?.bottom ?? 0) +
+                                55) /
+                              zoomFactor,
+                            top: ((pictureSize?.top ?? 0) - 55) / zoomFactor,
+                            left: (pictureSize?.left ?? 0) / zoomFactor,
+                            right:
+                              ((pictureSize?.width ?? 0) -
+                                (pictureSize?.right ?? 0)) /
+                              zoomFactor,
+                          }}
+                          onStart={handleStartDrag}
                         >
                           <img
                             draggable={false}

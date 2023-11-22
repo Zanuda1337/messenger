@@ -2,7 +2,7 @@ $dark-theme: (
   bg-primary: #141515,
   bg-primary-alpha: rgba(20, 21, 21, 0.6),
   bg-secondary: rgb(33, 33, 33),
-  bg-secondary-alpha: rgba(35, 35, 35,0.8),
+  bg-secondary-alpha: rgba(35, 35, 35, 0.8),
   bg-block-3: #8fa0af,
   border: rgb(50, 50, 50),
   border-primary: #4a545c,
@@ -18,4 +18,5 @@ $dark-theme: (
   ripple: rgba(114, 173, 246, 0.3),
   shadow: rgba(25, 25, 26, 0.5),
   scrollbar: rgba(64, 71, 78, 0.5),
+  bg-snackbar: rgba(5,5,5,0.75)
 );

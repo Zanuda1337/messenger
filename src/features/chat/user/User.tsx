@@ -5,13 +5,20 @@ import CustomIconButton from 'src/components/customIconButton/CustomIconButton';
 import SvgSelector from 'src/components/svgSelector/SvgSelector';
 import Typography from 'src/components/typography/Typography';
 import ProfilePicture from 'src/features/chat/user/profilePicture/ProfilePicture';
+import { Button, Switch } from '@mui/material';
+import { useSnackbar } from 'notistack';
 
 const User: React.FC = () => {
+  const { enqueueSnackbar } = useSnackbar();
+  const handleCopy = (label: string, text: string) => () => {
+    enqueueSnackbar(`${label} was copied`, { variant: 'info' });
+    void navigator.clipboard.writeText(text);
+  };
   return (
     <>
       <div className={'header'}>
         <div className={classes.row}>
-          <Link to={'/1'}>
+          <Link to={'..'}>
             <CustomIconButton>
               <SvgSelector id={'close'} className={classes.iconButton} />
             </CustomIconButton>
@@ -20,9 +27,11 @@ const User: React.FC = () => {
             User info
           </Typography>
         </div>
-        <CustomIconButton>
-          <SvgSelector id={'edit'} className={classes.iconButton} />
-        </CustomIconButton>
+        <Link to={'edit'}>
+          <CustomIconButton>
+            <SvgSelector id={'edit'} className={classes.iconButton} />
+          </CustomIconButton>
+        </Link>
       </div>
       <div className={classes.body}>
         <ProfilePicture
@@ -44,9 +53,59 @@ const User: React.FC = () => {
             },
           ]}
         />
+        <div className={classes.list}>
+          <ListItem
+            iconId="phone"
+            title={'Phone'}
+            subtitle={'+7 950 813 2299'}
+            onClick={handleCopy('Phone', '+7 950 813 2299')}
+          />
+          <ListItem
+            iconId="alternate"
+            title={'Username'}
+            subtitle={'allenain'}
+            onClick={handleCopy('Username', '@allenain')}
+          />
+          <ListItem
+            iconId="notifications"
+            title={'Notifications'}
+            endAdornment={<Switch />}
+          />
+        </div>
       </div>
     </>
   );
 };
+
+interface ListItemProps {
+  title: string;
+  iconId: string;
+  subtitle?: string;
+  endAdornment?: JSX.Element;
+  onClick?: () => void;
+}
+
+const ListItem: React.FC<ListItemProps> = ({
+  subtitle,
+  iconId,
+  title,
+  endAdornment,
+  onClick,
+}) => (
+  <Button classes={{ root: classes.item }} onClick={onClick}>
+    <div className={classes.block}>
+      <SvgSelector id={iconId} />
+      <div>
+        <Typography color={'tertiary'} weight={700}>
+          {title}
+        </Typography>
+        {subtitle !== undefined && (
+          <Typography size={'m'}>{subtitle}</Typography>
+        )}
+      </div>
+    </div>
+    {endAdornment !== undefined && endAdornment}
+  </Button>
+);
 
 export default User;
