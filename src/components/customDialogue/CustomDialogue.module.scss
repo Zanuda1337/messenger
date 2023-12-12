@@ -1,0 +1,27 @@
+@import "src/assets/styles/variables";
+
+.root {
+  & :global(.MuiPaper-root.MuiDialog-paper) {
+    background-color: var(--bg-secondary-alpha);
+    backdrop-filter: blur(5px);
+    padding: $indent;
+    gap: $indent * 0.8;
+    border-radius: 14px;
+    min-width: 400px;
+    p {
+      line-height: 1.5;
+    }
+    @media (max-width: 850px) {
+      padding: $indent_mobile;
+      gap: $indent_mobile;
+      min-width: auto;
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}

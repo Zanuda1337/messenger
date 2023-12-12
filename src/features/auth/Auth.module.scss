@@ -1,0 +1,111 @@
+@import 'src/assets/styles/variables';
+@import 'src/assets/styles/mixins';
+
+.wrapper {
+  background-color: var(--bg-secondary);
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  max-width: 400px;
+  margin: auto;
+  padding: 0 $indent;
+  @media (max-width: 340px) {
+    padding: 0 $indent_mobile;
+  }
+}
+
+.inner {
+  padding-top: 100px;
+  padding-bottom: 50px;
+  width: 100%;
+  @include column;
+  align-items: center;
+}
+
+.logo {
+  width: 160px;
+  height: 160px;
+  background: var(--primary);
+  border-radius: 100%;
+  @include center;
+  img {
+    width: 75%;
+    filter: contrast(10);
+  }
+}
+
+.textContainer {
+  @include column;
+  gap: 16px;
+  padding: 46px 0;
+  text-align: center;
+}
+
+.form {
+  width: 100%;
+  .submitWrapper {
+    padding-top: 20px;
+  }
+  .check {
+    &:hover {
+      background: none;
+    }
+  }
+}
+
+.column {
+  @include column;
+  gap: 20px;
+}
+
+.smallButton {
+  &:global(.MuiButtonBase-root.MuiButton-root) {
+    justify-content: flex-start;
+    margin-top: -10px;
+  }
+  &:global(.MuiButtonBase-root.MuiButton-root.MuiButton-text) {
+    font-size: 14px;
+    text-transform: none;
+  }
+}
+
+// animation
+
+.transitionGroup {
+  height: 280px;
+  width: 100%;
+}
+
+.transition {
+  width: 100%;
+  position: relative;
+}
+
+.enter {
+  opacity: 0;
+  transform: translateX(-50%);
+}
+.enterReverse {
+  opacity: 0;
+  transform: translateX(50%);
+}
+.enterActive {
+  transition: 300ms;
+  opacity: 1;
+  transform: translateX(0);
+}
+.exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+.exitActive {
+  transition: 200ms;
+  opacity: 0;
+  transform: translateX(0);
+  & > * {
+    transition: 200ms;
+    transform: scale(0.65);
+  }
+}

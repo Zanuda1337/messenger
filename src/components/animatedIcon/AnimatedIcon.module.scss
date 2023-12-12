@@ -2,14 +2,20 @@
   width: 20px;
   height: 20px;
   position: relative;
-  transition: .25s ease-in-out;
+  transition: .15s ease-in-out;
 
+  &.tertiary > div {
+    background: var(--text-tertiary);
+  }
+
+  &.secondary > div {
+    background: var(--text-secondary);
+  }
   & > div {
     transition: inherit;
     position: absolute;
     width: 100%;
     height: 2px;
-    background: var(--text-tertiary);
     left: 0;
     margin: auto;
     &:first-child {
@@ -39,6 +45,27 @@
         left: 50%;
         bottom: 5px;
         transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &.cross {
+    transform: rotate(0deg);
+    & > div {
+      &:first-child {
+        transform: rotate(-45deg);
+        opacity: 0;
+      }
+      &:nth-child(2) {
+        transform: rotate(45deg);
+        bottom: 0;
+        top: 0;
+      }
+      &:last-child {
+        transform: rotate(-45deg);
+
+        bottom: 0;
+        top: 0;
       }
     }
   }

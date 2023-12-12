@@ -1,0 +1,29 @@
+.root {
+  & :global(.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded) {
+    padding: 6px 5px;
+    background-color: var(--bg-secondary-alpha);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    min-width: 200px;
+    & :global(.MuiList-root.MuiList-padding) {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+.border {
+  margin: 5px -5px;
+}
+
+//padding: 6px 5px !important;
+//background-color: var(--bg-secondary-alpha) !important;
+//backdrop-filter: blur(5px) !important;
+//border-radius: 12px !important;
+//min-width: 200px !important;
+//gap: 3px;
+//display: flex;
+//flex-direction: column;

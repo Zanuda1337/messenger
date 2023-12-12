@@ -1,0 +1,32 @@
+.wrapper {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 50px;
+  .icon {
+    fill: var(--text-tertiary);
+    margin: auto;
+    width: 50px;
+  }
+  .inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-primary-alpha);
+    backdrop-filter: blur(10px);
+    border-radius: 100%;
+    padding: 11px;
+  }
+}
+
+.progress {
+  &:global(.MuiCircularProgress-root.MuiCircularProgress-determinate) {
+    color: var(--text-primary);
+    opacity: 0.6;
+    position: absolute;
+    :global(.MuiCircularProgress-circle.MuiCircularProgress-circleDeterminate) {
+      stroke-width: 1.5;
+    }
+  }
+}

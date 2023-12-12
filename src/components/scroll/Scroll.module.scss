@@ -1,6 +1,12 @@
 .scroll {
+  &.smooth > div {
+    scroll-behavior: smooth;
+  }
   & > div {
-    //scroll-behavior: smooth;
+    z-index: 1;
+    overflow-x: hidden !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
 }
 

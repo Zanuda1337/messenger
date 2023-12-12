@@ -1,0 +1,15 @@
+@import 'src/assets/styles/mixins';
+
+.wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  pointer-events: none;
+  & > div {
+    pointer-events: auto;
+  }
+  &.shadow {
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.8);
+  }
+}

@@ -1,0 +1,20 @@
+.border {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--text-tertiary);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & .dot {
+    border-radius: inherit;
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary);
+    transform: scale(0);
+    transition: .25s;
+    &.active {
+      transform: scale(1);
+    }
+  }
+}

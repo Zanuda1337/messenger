@@ -13,6 +13,7 @@ export interface CustomPopperProps extends Pick<TooltipProps, 'placement'> {
   leaveInterval?: number;
   onOpen: () => void;
   onClose: () => void;
+  mode?: 'hover' | 'click';
 }
 
 const TIME_STEP = 50;
@@ -27,6 +28,7 @@ const CustomPopper: React.FC<CustomPopperProps> = ({
   onClose,
   leaveInterval = 250,
   onOpen,
+  mode = 'hover',
   ...props
 }) => {
   const [uniqueId] = useState(v4());
@@ -35,6 +37,7 @@ const CustomPopper: React.FC<CustomPopperProps> = ({
   const [focused, setFocused] = useState(false);
 
   useEffect(() => {
+    if (mode === 'click') return;
     const child = childRef.current;
     if (child === null) return;
     let timeoutId: NodeJS.Timeout;
@@ -60,6 +63,7 @@ const CustomPopper: React.FC<CustomPopperProps> = ({
   }, [childRef, focused]);
 
   useEffect(() => {
+    if (mode === 'click') return;
     if (focused) return;
     if (!open) return;
     if (counter >= leaveInterval) {
@@ -79,7 +83,6 @@ const CustomPopper: React.FC<CustomPopperProps> = ({
       classes={{ tooltip: classes.tooltip }}
       open={open}
       ref={childRef}
-      disableFocusListener
       {...props}
       title={
         <ClickAwayListener onClickAway={onClose}>
@@ -101,6 +104,9 @@ const CustomPopper: React.FC<CustomPopperProps> = ({
     >
       <div
         onMouseEnter={() => {
+          if (mode === 'click') {
+            return;
+          }
           setFocused(true);
           onOpen();
         }}

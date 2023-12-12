@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface SvgSelectorProps {
+export interface SvgSelectorProps {
   id: string;
   className?: string;
   style?: Record<string, string>;
@@ -16,14 +16,8 @@ const SvgSelector: React.FC<SvgSelectorProps> = ({ id, className, style }) => {
       </svg>
     ),
     placeholder: (
-      <svg className={className} style={style} viewBox="0 0 30 26">
-        <path
-          d="M25.6929 3.07269H4.30809C3.22416 3.07269 2.34546 3.95139 2.34546 5.03531V20.9654C2.34546 22.0494 3.22416 22.928 4.30809 22.928H25.6929C26.7768 22.928 27.6555 22.0494 27.6555 20.9654V5.03531C27.6555 3.95139 26.7768 3.07269 25.6929 3.07269Z"
-          strokeWidth="2"
-          strokeMiterlimit="10"
-        />
-        <path d="M5.18188 20.0916V17.434L9.59697 13.0189L11.7974 15.2205L18.928 8.09111L24.7645 13.9277V20.0916H5.18188Z" />
-        <path d="M10.4185 8.52751C10.3595 11.9695 5.2397 11.9684 5.18188 8.52751C5.24079 5.08555 10.3606 5.08664 10.4185 8.52751Z" />
+      <svg className={className} style={style} viewBox="0 0 24 24">
+        <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86-3 3.87L9 13.14 6 17h12l-3.86-5.14z" />
       </svg>
     ),
     burger: (
@@ -186,7 +180,96 @@ const SvgSelector: React.FC<SvgSelectorProps> = ({ id, className, style }) => {
     ),
     info: (
       <svg viewBox="0 0 24 24" className={className} style={style}>
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+      </svg>
+    ),
+    delete: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5-1-1h-5l-1 1H5v2h14V4z" />
+      </svg>
+    ),
+    block: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z" />
+      </svg>
+    ),
+    select: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M16.54 11 13 7.46l1.41-1.41 2.12 2.12 4.24-4.24 1.41 1.41L16.54 11zM11 7H2v2h9V7zm10 6.41L19.59 12 17 14.59 14.41 12 13 13.41 15.59 16 13 18.59 14.41 20 17 17.41 19.59 20 21 18.59 18.41 16 21 13.41zM11 15H2v2h9v-2z" />
+      </svg>
+    ),
+    search2: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+      </svg>
+    ),
+    calendar: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" />
+      </svg>
+    ),
+    reply: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z" />
+      </svg>
+    ),
+    copy: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+      </svg>
+    ),
+    pin: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path
+          fillRule="evenodd"
+          d="M16 9V4h1c.55 0 1-.45 1-1s-.45-1-1-1H7c-.55 0-1 .45-1 1s.45 1 1 1h1v5c0 1.66-1.34 3-3 3v2h5.97v7l1 1 1-1v-7H19v-2c-1.66 0-3-1.34-3-3z"
+        />
+      </svg>
+    ),
+    checkCircle: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M12,0C5.4,0,0,5.4,0,12s5.4,12,12,12s12-5.4,12-12S18.6,0,12,0z M9.6,18l-6-6l1.7-1.7l4.3,4.3l9.1-9.1l1.7,1.7L9.6,18z" />
+      </svg>
+    ),
+    language: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="m12.87 15.07-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7 1.62-4.33L19.12 17h-3.24z" />
+      </svg>
+    ),
+    privacy: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z" />
+      </svg>
+    ),
+    devices: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M3 6h18V4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4v-2H3V6zm10 6H9v1.78c-.61.55-1 1.33-1 2.22s.39 1.67 1 2.22V20h4v-1.78c.61-.55 1-1.34 1-2.22s-.39-1.67-1-2.22V12zm-2 5.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM22 8h-6c-.5 0-1 .5-1 1v10c0 .5.5 1 1 1h6c.5 0 1-.5 1-1V9c0-.5-.5-1-1-1zm-1 10h-4v-8h4v8z" />
+      </svg>
+    ),
+    blocked: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M15.18 10.94c.2-.44.32-.92.32-1.44C15.5 7.57 13.93 6 12 6c-.52 0-1 .12-1.44.32l4.62 4.62z" />
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 13c-2.32 0-4.45.8-6.14 2.12C4.7 15.73 4 13.95 4 12c0-1.85.63-3.55 1.69-4.9l2.86 2.86c.21 1.56 1.43 2.79 2.99 2.99l2.2 2.2c-.57-.1-1.15-.15-1.74-.15zm6.31 1.9L7.1 5.69C8.45 4.63 10.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.54-1.69 4.9z" />
+      </svg>
+    ),
+    key: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M21 10h-8.35C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H13l2 2 2-2 2 2 4-4.04L21 10zM7 15c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z" />
+      </svg>
+    ),
+    addPerson: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+      </svg>
+    ),
+    add: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+      </svg>
+    ),
+    simpleArrowLeft: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M17.77 3.77 16 2 6 12l10 10 1.77-1.77L9.54 12z" />
       </svg>
     ),
   };

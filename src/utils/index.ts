@@ -22,3 +22,10 @@ export const stringToColor = (
 
 export const clamp = (value: number, min: number, max: number): number =>
   Math.min(Math.max(min, value), max);
+
+export const toggleArray = <T>(array: T[], item: T): T[] => {
+  if (array.includes(item)) {
+    return array.filter((i) => i !== item);
+  }
+  return [...array, item];
+};

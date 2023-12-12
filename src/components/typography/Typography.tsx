@@ -3,17 +3,18 @@ import clsx from 'clsx';
 
 type Elements = 'p' | 'span' | 'h1';
 type Weights = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
-type Sizes = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl';
+type Sizes = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl' | 'xxxxl';
 type Transforms = 'initial' | 'capitalize' | 'lowercase' | 'uppercase';
-type Colors =
+export type Colors =
   | 'primary'
   | 'secondary'
   | 'secondary-light'
   | 'tertiary'
   | 'interactive-primary'
-  | 'primary-light';
+  | 'primary-light'
+  | 'error';
 
-interface TypographyProps {
+export interface TypographyProps {
   el?: Elements;
   size?: Sizes;
   weight?: Weights;

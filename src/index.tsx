@@ -6,8 +6,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { SnackbarProvider } from 'notistack';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Info from 'src/components/snackbar/Info';
+import TabsProvider from 'src/providers/TabsProvider';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -22,7 +22,9 @@ root.render(
       classes={{ root: 'snackbar-container' }}
       Components={{ info: Info }}
     >
-      <App />
+      <TabsProvider>
+        <App />
+      </TabsProvider>
     </SnackbarProvider>
   </Provider>
 );

@@ -1,9 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { Ref, RefObject } from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
-import Dialogs from 'src/features/dialogs/Dialogs';
 import classes from './Messenger.module.scss';
-import { useDevice } from 'src/hooks';
+import { useDevice, useTabs } from 'src/hooks';
 import { routes } from 'src/router/Router';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -12,6 +11,7 @@ const Messenger: React.FC = () => {
   const location = useLocation();
   const isDialogsLocation = location.pathname === '/';
   const isMobileLayout = isDialogsLocation || width > 850;
+  const { outlet, key } = useTabs();
 
   const currentOutlet = useOutlet();
   const { nodeRef } =
@@ -26,17 +26,17 @@ const Messenger: React.FC = () => {
         in={isMobileLayout}
       >
         <aside className={'left-block'}>
-          <Dialogs />
+          <TransitionGroup component={React.Fragment}>
+            <CSSTransition timeout={150} key={key} classNames={'zoom'}>
+              <div className={'zoom'}>{outlet}</div>
+            </CSSTransition>
+          </TransitionGroup>
         </aside>
       </CSSTransition>
 
       <TransitionGroup component={'main'}>
         <CSSTransition
-          key={
-            location.pathname.split('/')[1] !== ''
-              ? `${0}`
-              : '1'
-          }
+          key={location.pathname.split('/')[1] !== '' ? `${0}` : '1'}
           nodeRef={nodeRef as Ref<HTMLElement | undefined> | undefined}
           timeout={300}
           classNames={width < 850 ? 'roll' : 'page'}
@@ -57,11 +57,5 @@ const Messenger: React.FC = () => {
     </div>
   );
 };
-
-// {isMobileLayout && (
-//   <aside>
-//     <Dialogs />
-//   </aside>
-// )}
 
 export default Messenger;

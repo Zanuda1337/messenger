@@ -1,0 +1,42 @@
+$size: 22px;
+$border_width: 2px;
+.border {
+  width: $size;
+  height: $size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--text-tertiary);
+  border-radius: 100%;
+  transition: 200ms;
+  &:focus {
+    background-color: var(--border-primary);
+    &.checked {
+      background: none;
+      .checkmark {
+      opacity: .5;
+      }
+    }
+  }
+  &.checked {
+    border-color: var(--text-primary);
+    & .checkmark {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  & .checkmark {
+    width: $size - ($border_width * 2);
+    height: $size - ($border_width * 2);
+    background: var(--text-primary);
+    border-radius: inherit;
+    transform: scale(0);
+    opacity: 0.5;
+    transition: 200ms;
+    svg {
+      width: inherit;
+      height: inherit;
+      fill: var(--primary);
+    }
+  }
+}

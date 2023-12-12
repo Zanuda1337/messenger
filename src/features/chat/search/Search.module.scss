@@ -1,0 +1,10 @@
+@import 'src/assets/styles/mixins';
+@import 'src/assets/styles/variables';
+
+.container {
+  @include column;
+  padding: $indent*0.75 $indent;
+  @media (max-width: 850px) {
+    padding: $indent_mobile;
+  }
+}

@@ -21,9 +21,13 @@ interface MessageProps {
     firstName: string;
     lastName?: string;
   };
+  selectMode: boolean;
+  isSelected: boolean;
+  isActive: boolean;
+  onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onContextMenu: (event: React.MouseEvent) => void;
 }
 
-// eslint-disable-next-line no-empty-pattern
 const Message: React.FC<MessageProps> = ({
   date,
   isOwn,
@@ -33,51 +37,71 @@ const Message: React.FC<MessageProps> = ({
   showName,
   last,
   user,
+  isActive,
+  isSelected,
+  selectMode,
+  onClick,
+  onContextMenu,
 }) => {
   return (
-    // <div className={classes.container}>
     <div
-      className={clsx(classes.messageWrapper, {
-        [classes.own]: isOwn,
-        [classes.fullRadius]: !last,
+      className={clsx(classes.messageContainer, {
+        [classes.active]: isActive || isSelected,
       })}
+      onContextMenu={onContextMenu}
+      onClick={onClick}
     >
-      {!read && (
-        <div className={classes.badge}>
-          <Badge variant="dot" />
+      <div
+        className={clsx(classes.messageWrapper, {
+          [classes.own]: isOwn,
+          [classes.fullRadius]: !last,
+        })}
+      >
+        <div
+          className={clsx(classes.checkboxContainer, {
+            [classes.active]: selectMode,
+          })}
+        >
+          <div>
+            <SvgSelector id={'checkCircle'} />
+          </div>
         </div>
-      )}
-      <div className={classes.message}>
-        {showName && (
-          <Typography
-            weight={600}
-            style={{ color: stringToColor(user.firstName) }}
-          >
-            {clsx(user.firstName, {
-              [` ${user.lastName}`]: user.lastName !== undefined,
-            })}
-          </Typography>
+        {!read && (
+          <div className={classes.badge}>
+            <Badge variant="dot" />
+          </div>
         )}
-        <div className={classes.content}>
-          {text !== undefined && (
+        <div className={classes.message}>
+          {showName && (
             <Typography
-              weight={500}
-              size="m"
-              className={classes.messageTypography}
+              weight={600}
+              style={{ color: stringToColor(user.firstName) }}
             >
-              {text}
+              {clsx(user.firstName, {
+                [` ${user.lastName}`]: user.lastName !== undefined,
+              })}
             </Typography>
           )}
-        </div>
-        <div className={classes.date}>
-          <Typography color="tertiary" size={'xxs'}>
-            {format(date, 'HH:mm')}
-          </Typography>
-          {!sent && <SvgSelector id="time" className={classes.icon}/>}
+          <div className={classes.content}>
+            {text !== undefined && (
+              <Typography
+                weight={500}
+                size="m"
+                className={classes.messageTypography}
+              >
+                {text}
+              </Typography>
+            )}
+          </div>
+          <div className={classes.date}>
+            <Typography color="tertiary" size={'xxs'}>
+              {format(date, 'HH:mm')}
+            </Typography>
+            {!sent && <SvgSelector id="time" className={classes.icon} />}
+          </div>
         </div>
       </div>
     </div>
-    // </div>
   );
 };
 

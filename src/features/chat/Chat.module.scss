@@ -13,29 +13,83 @@
   @include column;
   width: 100%;
   flex: 1;
+  overflow: hidden;
 }
 
 .container {
-  max-width: 710px + $indent*2;
+  max-width: 710px + $indent * 2;
   margin: 0 auto;
   width: 100%;
   padding: 0 $indent;
+  transition: transform 0.2s ease-in-out 0.3s, padding 0.3s;
+  @media (max-width: 850px) {
+    max-width: 710px + $indent_mobile * 2;
+    padding: 0 $indent_mobile;
+  }
   &.mobile {
     padding: 0;
+  }
+  &.selectMode {
+    transform: translateX(40px);
+    .own {
+      margin-right: 40px;
+    }
+    cursor: pointer;
+    & * {
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
+    }
+  }
+}
+
+.messageContainer {
+  position: relative;
+  z-index: 1;
+  &:before {
+    position: absolute;
+    width: 250%;
+    height: calc(100% + 6px);
+    top: -3px;
+    left: -75%;
+    background: var(--bg-snackbar);
+    content: '';
+    z-index: -1;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  &.active {
+    &:before {
+      opacity: 1;
+    }
+    .checkboxContainer > div {
+      border-color: #fff;
+      background: #fff;
+      &:after,
+      &:before {
+        transform: scale(0);
+      }
+    }
   }
 }
 
 .messageWrapper {
-  //margin-left: 45px;
   display: flex;
   gap: 10px;
   max-width: 70%;
+  transition: 0.2s ease-in-out;
+  & .checkboxContainer {
+    left: -75px;
+  }
   &.own {
     justify-content: flex-end;
     margin-left: auto;
     .message {
       background: var(--gray-focused);
       border-radius: 12px 12px 0 12px;
+    }
+    & .checkboxContainer {
+      left: -40px;
     }
   }
   &.fullRadius {
@@ -54,6 +108,7 @@
 }
 .messageTypography {
   line-height: 1.25;
+  word-break: break-word;
 }
 
 .date {
@@ -71,12 +126,6 @@
 .icon {
   fill: var(--text-primary);
   height: 100%;
-}
-
-.scroll {
-  & > div {
-    inset: auto 0 0 0 !important;
-  }
 }
 
 .block {
@@ -108,11 +157,21 @@
 .header {
   z-index: 1;
   box-shadow: 10px 0 5px 4px var(--shadow);
+  gap: 15px;
 }
 
 .chatLabel {
   display: flex;
   gap: 10px;
+}
+
+.arrow {
+  padding-right: 10px;
+}
+
+.link {
+  @include space-between;
+  width: 100%;
 }
 
 .textContainer {
@@ -121,3 +180,111 @@
   padding: 2px 0;
 }
 
+.actionIcon {
+  fill: var(--text-secondary);
+  width: 28px;
+}
+
+.enter {
+  transform: scale(0.5) translateX(-250px);
+  & > div {
+    transform: translateY(35px);
+  }
+}
+
+.enterActive {
+  transform: scale(1) translateX(0);
+  transition: 0.2s;
+  & > div {
+    transform: translateY(0);
+    transition: 0.2s ease-in;
+  }
+}
+
+.exit {
+  transform: scale(1) translateX(0);
+  transition: 0.2s;
+  & > div {
+    transform: translateY(0);
+    transition: 0.2s ease-in;
+  }
+  max-width: 100%;
+}
+
+.exitActive {
+  transform: scale(0.5) translateX(-20px);
+  & > div {
+    transform: translateY(-10px);
+  }
+}
+
+:global(.MuiPaper-root) .dialogButtons {
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.checkboxContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: 0.2s ease-in-out;
+  z-index: -1;
+  opacity: 0;
+  &.active {
+    opacity: 1;
+    transition-delay: 0.4s;
+  }
+  & > div {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    border: 2px solid var(--border-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    position: relative;
+    &:after,
+    &:before {
+      @include absolute-center;
+      content: '';
+      background: var(--bg-primary);
+      border-radius: inherit;
+      transition: 0.15s ease-in-out;
+    }
+    &:after {
+      opacity: 0;
+      background: var(--bg-snackbar);
+    }
+    & > svg {
+      fill: var(--primary);
+      width: 24px;
+      transition: inherit;
+    }
+  }
+}
+
+.tightEnter {
+  transform: translateY(100px);
+}
+.tightEnterActive {
+  transform: translateY(0);
+  transition: .3s;
+}
+.tightExit {
+  transform: translateY(0);
+  transition: .3s;
+}
+.tightExitActive {
+  transform: translateY(100px);
+}
+
+.tight {
+  padding: 0 $indent * 4;
+}

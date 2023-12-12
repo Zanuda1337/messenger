@@ -1,0 +1,49 @@
+@import 'src/assets/styles/mixins';
+
+.wrapper {
+  position: relative;
+  .invisible {
+    visibility: hidden;
+    position: static !important;
+  }
+  span {
+    @include absolute-center;
+  }
+  :global(.slot-machine-enter) {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  :global(.slot-machine-enter-active) {
+    transform: translateY(0);
+    transition: 150ms;
+    opacity: 1;
+  }
+  :global(.slot-machine-exit) {
+    transform: translateY(0);
+    transition: 150ms;
+    opacity: 1;
+  }
+  :global(.slot-machine-exit-active) {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  :global(.slot-machine-down-enter) {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  :global(.slot-machine-down-enter-active) {
+    transform: translateY(0);
+    transition: 150ms;
+    opacity: 1;
+  }
+  :global(.slot-machine-down-exit) {
+    transform: translateY(0);
+    transition: 150ms;
+    opacity: 1;
+  }
+  :global(.slot-machine-down-exit-active) {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}

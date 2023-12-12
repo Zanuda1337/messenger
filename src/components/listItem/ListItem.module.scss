@@ -1,0 +1,44 @@
+.item {
+  &:global(.MuiButtonBase-root.MuiButton-root) {
+    height: 60px;
+    justify-content: space-between;
+    padding: 0 15px;
+    transition: all 0s, opacity 200ms;
+    width: 100%;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  & :global(.MuiTouchRipple-child) {
+    background-color: var(--ripple) !important;
+  }
+
+  &:global(.MuiButtonBase-root):hover {
+    background: var(--gray-hover);
+  }
+
+  &:global(.MuiButtonBase-root).active {
+    background: var(--gray-focused);
+  }
+
+  .block {
+    display: flex;
+    gap: 24px;
+    .textContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 5px;
+      & > p {
+        line-height: 1;
+      }
+    }
+  }
+}
+.svg {
+  width: 25px;
+  fill: var(--text-secondary);
+}

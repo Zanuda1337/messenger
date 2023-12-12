@@ -1,0 +1,24 @@
+.search {
+  :global(.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary) {
+    height: 40px;
+  }
+
+  :global(.MuiInputBase-input) {
+    padding-left: 10px;
+  }
+
+  :global(.Mui-focused) {
+    :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--primary) !important;
+    }
+
+    .searchIcon {
+      fill: var(--primary);
+    }
+  }
+
+  .searchIcon {
+    fill: var(--text-tertiary);
+    height: 20px;
+  }
+}

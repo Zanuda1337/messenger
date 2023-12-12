@@ -17,23 +17,103 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41d6df89-7c54-4f47-b456-4e9d7dce311c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/snackbar/Info.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/snackbar/Snackbar.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/chatInput/SelectToolbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customButton/CustomButton.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customButton/CustomButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customCheckbox/CustomCheckbox.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customCheckbox/CustomCheckbox.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customContextMenu/CustomContextMenu.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customContextMenu/CustomContextMenu.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customDialogue/CustomDialogue.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customDialogue/CustomDialogue.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customDrawer/CustomDrawer.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customDrawer/CustomDrawer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customLink/CustomLink.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customSlider/CustomSlider.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customSlider/CustomSlider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customSwitch/CustomSwitch.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customSwitch/CustomSwitch.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customTextField/CustomTextField.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/customTextField/CustomTextField.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/listItem/ListItem.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/listItem/ListItem.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/radio/Radio.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/radio/Radio.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/radioGroup/RadioGroup.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/searchField/SearchField.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/searchField/SearchField.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/slotMachine/SlotMachine.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/slotMachine/SlotMachine.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/swipeBack/SwipeBack.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/swipeBack/SwipeBack.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/swipeable/Swipeable.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/swipeable/Swipeable.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tabHeader/TabHeader.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/tabHeader/TabHeader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/auth/Auth.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/auth/Auth.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/auth/Auth.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/auth/EmailForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/auth/LoginForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/auth/RegistrationForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chat/search/Search.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chat/search/Search.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/chat/user/edit/Edit.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/tabs/Tabs.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/tabs/generalSettings/GeneralSettings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/tabs/language/Language.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/tabs/notifications/Notifications.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/tabs/privacy/Privacy.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/tabs/privacyEdit/PrivacyEdit.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/tabs/settings/Settings.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/tabs/settings/Settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/PublicLayout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/rightSide/RightSide.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/layouts/rightSide/RightSide.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/providers/HistoryProvider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/providers/TabsProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Zanuda.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Zanuda.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/styles/dark_theme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/dark_theme.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/global.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/global.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/styles/global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/global.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/styles/light_theme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/light_theme.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burgerArrowIcon/BurgerArrowIcon.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/animatedIcon/AnimatedIcon.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/burgerArrowIcon/BurgerArrowIcon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/animatedIcon/AnimatedIcon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/chatInput/ChatInput.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chatInput/ChatInput.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/chatInput/ChatInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chatInput/ChatInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/customAvatar/CustomAvatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customAvatar/CustomAvatar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/customIconButton/CustomIconButton.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customIconButton/CustomIconButton.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/customIconButton/CustomIconButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customIconButton/CustomIconButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/customMenu/CustomMenu.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customMenu/CustomMenu.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/customMenu/CustomMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customMenu/CustomMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/customPopper/CustomPopper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customPopper/CustomPopper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/scroll/Scroll.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/scroll/Scroll.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/scroll/Scroll.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/scroll/Scroll.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/svgSelector/SvgSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/svgSelector/SvgSelector.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/typography/Typography.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/typography/Typography.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/chat/Chat.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chat/Chat.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/chat/Chat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chat/Chat.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/chat/Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chat/Message.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/chat/user/User.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chat/user/User.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/chat/user/User.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chat/user/User.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/chat/user/profilePicture/ProfilePicture.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chat/user/profilePicture/ProfilePicture.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/chat/user/profilePicture/ProfilePicture.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chat/user/profilePicture/ProfilePicture.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/dialogs/Dialogs.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tabs/dialogs/Dialogs.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tabs/dialogs/Dialogs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/dialogs/Dialogue.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tabs/dialogs/Dialogue.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/messenger/Messenger.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/messenger/Messenger.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/PrivateLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/PrivateLayout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/Router.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,17 +150,19 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\Zanuda\AppData\Roaming\npm\node_modules\prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
     <property name="ts.external.directory.path" value="C:\Users\Zanuda\Documents\Projects\messenger\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Zanuda\Documents\Projects\messenger\src\features\chat\user" />
-      <recent name="C:\Users\Zanuda\Documents\Projects\messenger\src\assets\images" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Zanuda\Documents\Projects\messenger\src\components" />
       <recent name="C:\Users\Zanuda\Documents\Projects\messenger\src\assets\styles" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Zanuda\Documents\Projects\messenger\src\features\tabs\generalSettings" />
+      <recent name="C:\Users\Zanuda\Documents\Projects\messenger\src\features\tabs" />
+      <recent name="C:\Users\Zanuda\Documents\Projects\messenger\src\features\chat\user" />
+      <recent name="C:\Users\Zanuda\Documents\Projects\messenger\src\assets\images" />
     </key>
   </component>
   <component name="RunManager">
@@ -142,7 +224,23 @@
       <workItem from="1699465576408" duration="8762000" />
       <workItem from="1699511748489" duration="15571000" />
       <workItem from="1699638437128" duration="1504000" />
-      <workItem from="1700557687052" duration="17969000" />
+      <workItem from="1700557687052" duration="25783000" />
+      <workItem from="1700670912539" duration="1261000" />
+      <workItem from="1700791393343" duration="61975000" />
+      <workItem from="1700935572914" duration="30710000" />
+      <workItem from="1701061662865" duration="1198000" />
+      <workItem from="1701279433886" duration="940000" />
+      <workItem from="1701342621605" duration="91000" />
+      <workItem from="1701532772880" duration="2451000" />
+      <workItem from="1701717343370" duration="1703000" />
+      <workItem from="1701759113728" duration="864000" />
+      <workItem from="1701950641894" duration="15422000" />
+      <workItem from="1702026058716" duration="842000" />
+      <workItem from="1702038004130" duration="32076000" />
+      <workItem from="1702120360289" duration="14503000" />
+      <workItem from="1702210726505" duration="23481000" />
+      <workItem from="1702290008944" duration="29229000" />
+      <workItem from="1702377994463" duration="2716000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1699644787533</created>
@@ -158,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699644932444</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="realize profile picture">
+      <created>1700618473742</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700618473742</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,52 +296,65 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="add unversioned files" />
-    <option name="LAST_COMMIT_MESSAGE" value="add unversioned files" />
+    <MESSAGE value="realize profile picture" />
+    <option name="LAST_COMMIT_MESSAGE" value="realize profile picture" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="702" y="325" key="#ESLint" timestamp="1700618225040">
+    <state x="702" y="325" key="#ESLint" timestamp="1701971292581">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="702" y="325" key="#ESLint/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1700618225040" />
-    <state x="690" y="308" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1698352745437">
+    <state x="702" y="325" key="#ESLint/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1701971292581" />
+    <state x="552" y="218" width="816" height="721" key="#Intentions" timestamp="1702066045468">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="690" y="308" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698352745437" />
+    <state x="552" y="218" width="816" height="721" key="#Intentions/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1702066045468" />
+    <state x="765" y="276" key="#com.intellij.ide.util.MemberChooser" timestamp="1702065930155">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="765" y="276" key="#com.intellij.ide.util.MemberChooser/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1702065930155" />
+    <state x="690" y="308" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1702306693701">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="690" y="308" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1702306693701" />
+    <state x="648" y="340" key="EditFileWatcherDialog" timestamp="1700821283325">
+      <screen x="0" y="40" width="1920" height="1040" />
+    </state>
+    <state x="648" y="340" key="EditFileWatcherDialog/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1700821283325" />
     <state x="740" y="315" key="FileChooserDialogImpl" timestamp="1699432720465">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="740" y="315" key="FileChooserDialogImpl/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1699432720465" />
-    <state width="1899" height="215" key="GridCell.Tab.0.bottom" timestamp="1700613262857">
+    <state width="1899" height="173" key="GridCell.Tab.0.bottom" timestamp="1702388270542">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1899" height="215" key="GridCell.Tab.0.bottom/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1700613262857" />
-    <state width="1899" height="215" key="GridCell.Tab.0.center" timestamp="1700613262857">
+    <state width="1899" height="173" key="GridCell.Tab.0.bottom/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1702388270542" />
+    <state width="1899" height="173" key="GridCell.Tab.0.center" timestamp="1702388270542">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1899" height="215" key="GridCell.Tab.0.center/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1700613262857" />
-    <state width="1899" height="215" key="GridCell.Tab.0.left" timestamp="1700613262857">
+    <state width="1899" height="173" key="GridCell.Tab.0.center/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1702388270542" />
+    <state width="1899" height="173" key="GridCell.Tab.0.left" timestamp="1702388270542">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1899" height="215" key="GridCell.Tab.0.left/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1700613262857" />
-    <state width="1899" height="215" key="GridCell.Tab.0.right" timestamp="1700613262857">
+    <state width="1899" height="173" key="GridCell.Tab.0.left/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1702388270542" />
+    <state width="1899" height="173" key="GridCell.Tab.0.right" timestamp="1702388270542">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state width="1899" height="215" key="GridCell.Tab.0.right/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1700613262857" />
-    <state x="476" y="206" key="SettingsEditor" timestamp="1698360092273">
+    <state width="1899" height="173" key="GridCell.Tab.0.right/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1702388270542" />
+    <state x="476" y="206" key="SettingsEditor" timestamp="1700821268687">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="476" y="206" key="SettingsEditor/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1698360092273" />
+    <state x="476" y="206" key="SettingsEditor/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1700821268687" />
     <state x="552" y="293" key="Vcs.Push.Dialog.v2" timestamp="1699644943825">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
     <state x="552" y="293" key="Vcs.Push.Dialog.v2/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1699644943825" />
-    <state x="1316" y="190" width="579" height="516" key="find.popup" timestamp="1699325244428">
+    <state x="1316" y="190" width="579" height="566" key="find.popup" timestamp="1702315825154">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="1316" y="190" width="579" height="516" key="find.popup/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1699325244428" />
-    <state x="616" y="260" key="run.anything.popup" timestamp="1700615768877">
+    <state x="1316" y="190" width="579" height="566" key="find.popup/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1702315825154" />
+    <state x="616" y="260" key="run.anything.popup" timestamp="1702335893337">
       <screen x="0" y="40" width="1920" height="1040" />
     </state>
-    <state x="616" y="260" key="run.anything.popup/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1700615768877" />
+    <state x="616" y="260" key="run.anything.popup/-1920.40.1920.1040/0.40.1920.1040@0.40.1920.1040" timestamp="1702335893337" />
   </component>
 </project>

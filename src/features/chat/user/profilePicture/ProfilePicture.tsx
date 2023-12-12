@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classes from './ProfilePicture.module.scss';
-import userClasses from '../User.module.scss';
 import chatClasses from 'src/features/chat/Chat.module.scss';
 import { Fade, IconButton, Modal } from '@mui/material';
 import SvgSelector from 'src/components/svgSelector/SvgSelector';
@@ -204,7 +203,6 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
         <Modal
           open={open}
           onClose={handleClose}
-          disableAutoFocus
           disablePortal
           slotProps={{
             backdrop: {
@@ -240,8 +238,8 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
                         <SvgSelector
                           id={action.icon}
                           className={clsx(
-                            userClasses.iconButton,
-                            userClasses.light
+                            'iconButton',
+                            'light'
                           )}
                         />
                       </CustomIconButton>
@@ -285,9 +283,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
                           disabled={zoomFactor <= 1}
                           scale={zoomFactor}
                           position={draggablePos}
-                          axis={
-                            (pictureSize?.width ?? 0) > width ? 'both' : 'y'
-                          }
+                          axis={(pictureSize?.width ?? 0) > width ? 'both' : 'y'}
                           bounds={{
                             bottom:
                               ((pictureSize?.height ?? 0) -
@@ -364,7 +360,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
               <IconButton onClick={handleChangePage(activeIndex - 1)}>
                 <SvgSelector
                   id="arrowLeft"
-                  className={clsx(userClasses.iconButton, userClasses.light)}
+                  className={clsx('iconButton', 'light')}
                 />
               </IconButton>
             </div>
@@ -379,7 +375,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
               <IconButton onClick={handleChangePage(activeIndex + 1)}>
                 <SvgSelector
                   id="arrowRight"
-                  className={clsx(userClasses.iconButton, userClasses.light)}
+                  className={clsx('iconButton', 'light')}
                 />
               </IconButton>
             </div>

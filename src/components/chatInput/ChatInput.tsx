@@ -13,7 +13,11 @@ interface ChatInputProps {
   onSubmit: () => void;
 }
 
-const ChatInput: React.FC<ChatInputProps> = ({ value, onChange, onSubmit }) => {
+const ChatInput: React.FC<ChatInputProps> = ({
+  value,
+  onChange,
+  onSubmit,
+}) => {
   const [fileMenuOpen, setFileMenuOpen] = React.useState(false);
   const [emojiPickerOpen, setEmojiPickerOpen] = React.useState(false);
   return (

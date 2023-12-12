@@ -1,0 +1,124 @@
+@import 'src/assets/styles/functions';
+@import 'src/assets/styles/mixins';
+
+.root {
+  &:global(.MuiButtonBase-root.MuiButton-root) {
+    font-size: 15px;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+    border-radius: 9px;
+    padding: 6px 14px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s 200ms;
+    &:after {
+      position: absolute;
+      width: 0;
+      height: 100%;
+      left: 0;
+      top: 0;
+      content: '';
+      background-color: currentColor;
+      opacity: 0;
+      transition: 0.3s;
+    }
+    &:hover {
+      background-color: transparent;
+      &:after {
+        width: 100%;
+        opacity: 0.1;
+      }
+    }
+  }
+  &.fetching:global(.MuiButtonBase-root.MuiButton-root) {
+    opacity: .6;
+  }
+
+  &:global(.MuiButtonBase-root.MuiButton-root.MuiButton-sizeLarge) {
+    padding: 12px 14px;
+    font-size: 17px;
+  }
+
+  &:global(.text-primary.MuiButtonBase-root.MuiButton-root.MuiButton-text) {
+    color: var(--text-primary);
+  }
+  &:global(.text-tertiary.MuiButtonBase-root.MuiButton-root.MuiButton-text) {
+    color: var(--text-tertiary);
+  }
+  &:global(.text-secondary.MuiButtonBase-root.MuiButton-root.MuiButton-text) {
+    color: var(--text-secondary);
+  }
+  &:global(.primary.MuiButtonBase-root.MuiButton-root.MuiButton-text) {
+    color: var(--primary);
+  }
+  &:global(.error.MuiButtonBase-root.MuiButton-root.MuiButton-text) {
+    color: var(--error);
+  }
+  &:global(.MuiButtonBase-root.MuiButton-root.MuiButton-text) {
+    &:disabled {
+      color: var(--text-secondary);
+      opacity: 0.4;
+    }
+  }
+
+  //contained
+
+  &:global(.MuiButtonBase-root.MuiButton-root.MuiButton-contained) {
+    color: var(--text-primary);
+    box-shadow: none;
+  }
+
+  &:global(.text-primary.MuiButtonBase-root.MuiButton-root.MuiButton-contained) {
+    background-color: var(--text-primary);
+  }
+  &:global(.text-tertiary.MuiButtonBase-root.MuiButton-root.MuiButton-contained) {
+    background-color: var(--text-tertiary);
+  }
+  &:global(.text-secondary.MuiButtonBase-root.MuiButton-root.MuiButton-contained) {
+    background-color: var(--text-secondary);
+  }
+  &:global(.primary.MuiButtonBase-root.MuiButton-root.MuiButton-contained) {
+    background-color: var(--primary);
+  }
+  &:global(.error.MuiButtonBase-root.MuiButton-root.MuiButton-contained) {
+    background-color: var(--error);
+  }
+  &:global(.MuiButtonBase-root.MuiButton-root.MuiButton-contained) {
+    color: var(--text-primary-light);
+    &:disabled {
+      opacity: 0.4;
+    }
+    &:hover {
+      &:after {
+        opacity: 0.15;
+      }
+    }
+  }
+}
+
+.wrapper {
+  position: relative;
+}
+
+.progress {
+  pointer-events: none;
+  &:global(.MuiCircularProgress-root.MuiCircularProgress-indeterminate) {
+    @include absolute-center;
+    color: var(--text-primary-light);
+  }
+}
+
+.enter {
+  opacity: 0;
+}
+.enterActive {
+  transition: 500ms;
+  transition-delay: 200ms;
+  opacity: 1;
+}
+.exit {
+  opacity: 1;
+}
+.exitActive {
+  opacity: 0;
+}

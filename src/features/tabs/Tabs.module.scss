@@ -1,0 +1,11 @@
+@import "src/assets/styles/variables";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+.titleContainer {
+  padding: $indent $indent $indent * 0.3;
+}

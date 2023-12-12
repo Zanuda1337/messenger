@@ -1,0 +1,46 @@
+.root {
+  :global(.MuiFormLabel-root) {
+    color: var(--text-secondary);
+    font-family: "Mulish", sans-serif;
+  }
+  :global(.MuiFormLabel-root.Mui-error) {
+    color: var(--error);
+  }
+  & :global(.MuiInputBase-root) {
+    border-radius: 16px;
+  }
+  :global(.MuiOutlinedInput-notchedOutline) {
+    border-color: var(--border-primary);
+    border-radius: 16px;
+    transition: border-color .2s;
+  }
+  :global(.Mui-error.MuiInputBase-root .MuiOutlinedInput-notchedOutline) {
+    border-color: var(--error);
+  }
+
+  :global(.MuiInputBase-root):hover {
+    :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--bg-block-3);
+    }
+  }
+
+  :global(.MuiInputBase-input) {
+    font-family: 'Mulish', sans-serif;
+    color: var(--text-primary);
+    &::placeholder {
+      color: var(--text-tertiary);
+      opacity: 1;
+    }
+  }
+
+  :global(.MuiInputBase-root.Mui-focused) {
+    :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--primary);
+    }
+  }
+  :global(.Mui-focused.Mui-error) {
+    :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--error);
+    }
+  }
+}

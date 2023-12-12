@@ -6,8 +6,8 @@ import classes from './Dialogs.module.scss';
 import Typography from 'src/components/typography/Typography';
 import clsx from 'clsx';
 import SvgSelector from 'src/components/svgSelector/SvgSelector';
-import { Link } from 'react-router-dom';
 import Badge from 'src/components/badge/Badge';
+import CustomLink from 'src/components/customLink/CustomLink';
 
 interface DialogueProps {
   id: number;
@@ -34,7 +34,7 @@ const Dialogue: React.FC<DialogueProps> = ({
   muted,
 }) => {
   return (
-    <Link to={`/${id}`}>
+    <CustomLink to={`/${id}`}>
       <Button
         classes={{
           root: clsx(classes.buttonRoot, { [classes.active]: active }),
@@ -72,7 +72,7 @@ const Dialogue: React.FC<DialogueProps> = ({
           </div>
         </div>
       </Button>
-    </Link>
+    </CustomLink>
   );
 };
 

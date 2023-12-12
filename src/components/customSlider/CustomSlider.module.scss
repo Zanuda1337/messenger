@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+  height: 80px;
+  justify-content: center;
+  gap: 5px;
+  & .labelContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+}

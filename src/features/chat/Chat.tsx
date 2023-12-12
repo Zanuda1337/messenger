@@ -13,23 +13,46 @@ import { Scrollbars } from 'react-custom-scrollbars-2';
 import Scroll from 'src/components/scroll/Scroll';
 import CustomAvatar from 'src/components/customAvatar/CustomAvatar';
 import clsx from 'clsx';
-import { Link, useLocation, useOutlet } from 'react-router-dom';
-import { useDevice } from 'src/hooks';
+import { useLocation, useNavigate, useOutlet } from 'react-router-dom';
+import { useCopyToClipboard, useDevice } from 'src/hooks';
 import {
   CSSTransition,
   SwitchTransition,
   TransitionGroup,
 } from 'react-transition-group';
-import { Collapse } from '@mui/material';
 import Typography from 'src/components/typography/Typography';
 import SvgSelector from 'src/components/svgSelector/SvgSelector';
 import { routes } from 'src/router/Router';
+import CustomIconButton from 'src/components/customIconButton/CustomIconButton';
+import AnimatedIcon from 'src/components/animatedIcon/AnimatedIcon';
+import CustomMenu from 'src/components/customMenu/CustomMenu';
+import CustomLink from 'src/components/customLink/CustomLink';
+import { useHistory } from 'src/providers/HistoryProvider';
+import CustomContextMenu from 'src/components/customContextMenu/CustomContextMenu';
+import CustomDialogue from 'src/components/customDialogue/CustomDialogue';
+import CustomButton from 'src/components/customButton/CustomButton';
+import { toggleArray } from 'src/utils';
+import { isBefore } from 'date-fns';
+import SelectToolbar from 'src/components/chatInput/SelectToolbar';
 
-const messages = [
+// todo Временный тип, заменить
+interface IMessage {
+  id: number;
+  text: string;
+  date: Date;
+  isOwn: boolean;
+  sent: boolean;
+  read: boolean;
+  user: {
+    id: number;
+    firstName: string;
+  };
+}
+const messages: IMessage[] = [
   {
     id: 1,
-    text: 'Hello!',
-    date: new Date(),
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet cum, debitis eligendi error ipsum.',
+    date: new Date(2023, 11, 26, 7, 46),
     isOwn: true,
     sent: true,
     read: true,
@@ -40,8 +63,8 @@ const messages = [
   },
   {
     id: 2,
-    text: 'Пиздец потом буду нищей еще и бездомной',
-    date: new Date(),
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet cum, debitis eligendi error ipsum iste labore laudantium.',
+    date: new Date(2023, 11, 26, 7, 47),
     isOwn: false,
     sent: true,
     read: true,
@@ -52,8 +75,8 @@ const messages = [
   },
   {
     id: 3,
-    text: 'сук я верстал сообщения и мне надо было подставить че нибудь и только потом я понял как иронично это выглядит',
-    date: new Date(),
+    text: 'Velit vero? Minima, molestias, nostrum? Consequatur fugit harum nisi quibusdam.',
+    date: new Date(2023, 11, 26, 7, 48),
     isOwn: true,
     sent: true,
     read: true,
@@ -64,8 +87,8 @@ const messages = [
   },
   {
     id: 4,
-    text: 'Hello!',
-    date: new Date(),
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet cum, debitis eligendi error ipsum iste labore laudantium, neque quo reiciendis, velit vero?',
+    date: new Date(2023, 11, 26, 7, 49),
     isOwn: true,
     sent: true,
     read: true,
@@ -76,8 +99,8 @@ const messages = [
   },
   {
     id: 5,
-    text: 'Пиздец потом буду нищей еще и бездомной',
-    date: new Date(),
+    text: 'Consequatur fugit harum nisi quibusdam.',
+    date: new Date(2023, 11, 26, 7, 50),
     isOwn: false,
     sent: true,
     read: true,
@@ -88,8 +111,8 @@ const messages = [
   },
   {
     id: 6,
-    text: 'сук я верстал сообщения и мне надо было подставить че нибудь и только потом я понял как иронично это выглядит',
-    date: new Date(),
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet cum, debitis eligendi error ipsum iste labore laudantium, neque quo reiciendis, velit vero? Minima, molestias, nostrum? Consequatur fugit harum nisi quibusdam.',
+    date: new Date(2023, 11, 26, 7, 51),
     isOwn: true,
     sent: true,
     read: true,
@@ -100,8 +123,8 @@ const messages = [
   },
   {
     id: 7,
-    text: 'Hello!',
-    date: new Date(),
+    text: 'Minima, molestias, nostrum? Consequatur fugit harum nisi quibusdam.',
+    date: new Date(2023, 11, 26, 7, 52),
     isOwn: true,
     sent: true,
     read: true,
@@ -112,8 +135,8 @@ const messages = [
   },
   {
     id: 8,
-    text: 'Пиздец потом буду нищей еще и бездомной',
-    date: new Date(),
+    text: 'Amet cum, debitis eligendi error ipsum iste labore laudantium, neque quo reiciendis.',
+    date: new Date(2023, 11, 26, 7, 53),
     isOwn: false,
     sent: true,
     read: true,
@@ -124,8 +147,8 @@ const messages = [
   },
   {
     id: 9,
-    text: 'сук я верстал сообщения и мне надо было подставить че нибудь и только потом я понял как иронично это выглядит',
-    date: new Date(),
+    text: 'Я хочу умереть',
+    date: new Date(2023, 11, 26, 7, 54),
     isOwn: true,
     sent: true,
     read: true,
@@ -136,8 +159,8 @@ const messages = [
   },
   {
     id: 10,
-    text: 'Hello!',
-    date: new Date(),
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet cum.',
+    date: new Date(2023, 11, 26, 7, 55),
     isOwn: true,
     sent: true,
     read: true,
@@ -148,8 +171,8 @@ const messages = [
   },
   {
     id: 11,
-    text: 'Пиздец потом буду нищей еще и бездомной',
-    date: new Date(),
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, molestias, nostrum? Consequatur fugit harum nisi quibusdam.',
+    date: new Date(2023, 11, 26, 7, 56),
     isOwn: false,
     sent: true,
     read: true,
@@ -160,83 +183,8 @@ const messages = [
   },
   {
     id: 12,
-    text: 'сук я верстал сообщения и мне надо было подставить че нибудь и только потом я понял как иронично это выглядит',
-    date: new Date(),
-    isOwn: true,
-    sent: true,
-    read: true,
-    user: {
-      id: 1,
-      firstName: 'Zanuda',
-    },
-  },
-  {
-    id: 13,
-    text: 'Hello!',
-    date: new Date(),
-    isOwn: true,
-    sent: true,
-    read: true,
-    user: {
-      id: 1,
-      firstName: 'Zanuda',
-    },
-  },
-  {
-    id: 14,
-    text:
-      'Блин хочу попробовать приготовить рисовые шарики \n' +
-      'Мне очень нравится вкус ролл и я бы хотела приблизиться к нему хоть немного самостоятельно\n' +
-      'Почти всё что идёт в роллы можно найти дома кроме нори, но оно мне не очень нравится поэтому попробую исключить',
-    date: new Date(),
-    isOwn: false,
-    sent: true,
-    read: true,
-    user: {
-      id: 2,
-      firstName: 'Поляк',
-    },
-  },
-  {
-    id: 15,
-    text: 'К тому же я люблю экспериментировать с едой и методом проб создавать свои идеальные рецепты блюд',
-    date: new Date(),
-    isOwn: false,
-    sent: true,
-    read: true,
-    user: {
-      id: 2,
-      firstName: 'Поляк',
-    },
-  },
-  {
-    id: 16,
-    text: 'Ну лучше Цезаря я пока ничего не создавала',
-    date: new Date(),
-    isOwn: false,
-    sent: true,
-    read: true,
-    user: {
-      id: 2,
-      firstName: 'Поляк',
-    },
-  },
-  {
-    id: 17,
-    text: 'Роллы вкусные благодаря нори',
-    date: new Date(),
-    isOwn: true,
-    sent: true,
-    read: true,
-    user: {
-      id: 1,
-      firstName: 'Zanuda',
-    },
-  },
-  {
-    id: 18,
-    text: 'Мне стыдно но т.к. мне негде беспалевно парить я иду какать и парить одновременно',
-    date: new Date(),
+    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    date: new Date(2023, 11, 26, 7, 57),
     isOwn: true,
     sent: true,
     read: true,
@@ -266,14 +214,51 @@ const structMessages = (messages: any[]): any[][] => {
 
 const Chat: React.FC = () => {
   const scrollRef = useRef<Scrollbars>(null);
-  const { width } = useDevice();
+  const currentOutlet = useOutlet();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const copyToClipboard = useCopyToClipboard();
+  const { nodeRef } =
+    routes.find((route) => route.path === location.pathname) ?? {};
+  const { width, isMobileLayout } = useDevice();
+  const { goBack } = useHistory();
+
+  const [selectMessageMode, setSelectMessageMode] = useState(false);
+  const [scrollTransition, setScrollTransition] = useState(false);
+  const [selectedMessages, setSelectedMessages] = useState<number[]>([]);
   const [messagesData, setMessagesData] = useState(messages);
   const [message, setMessage] = useState('');
+  const [deleteMessageDialogOpen, setDeleteMessageDialogOpen] = useState(false);
   const structuredMessages = useMemo(
     () => structMessages(messagesData),
     [messagesData]
   );
-  const location = useLocation();
+
+  const [contextMenu, setContextMenu] = React.useState<{
+    message: IMessage;
+    mouseX: number;
+    mouseY: number;
+  } | null>(null);
+
+  const handleContextMenu = (
+    event: React.MouseEvent,
+    message: IMessage
+  ): void => {
+    event.preventDefault();
+    setContextMenu(
+      contextMenu === null
+        ? {
+            message,
+            mouseX: event.clientX,
+            mouseY: event.clientY,
+          }
+        : null
+    );
+  };
+
+  const handleClose = (): void => {
+    setContextMenu(null);
+  };
 
   const handleChangeMessage = (text: string): void => {
     setMessage(text);
@@ -285,8 +270,8 @@ const Chat: React.FC = () => {
       text: message,
       date: new Date(),
       isOwn: true,
-      sent: false,
-      read: false,
+      sent: true,
+      read: true,
       user: {
         id: 1,
         firstName: 'Zanuda',
@@ -295,55 +280,272 @@ const Chat: React.FC = () => {
     setMessagesData([...messagesData, newMessage]);
     setMessage('');
   };
-  const currentOutlet = useOutlet();
-  const { nodeRef } =
-    routes.find((route) => route.path === location.pathname) ?? {};
+
+  const handleDeleteMessageDialogOpen = (): void => {
+    setDeleteMessageDialogOpen(true);
+  };
+  const handleDeleteMessageDialogClose = (): void => {
+    setDeleteMessageDialogOpen(false);
+  };
+
+  const handleSelectMessage = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    messageId: number
+  ): void => {
+    if (e.shiftKey && !selectedMessages.includes(messageId)) {
+      e.preventDefault();
+      const lastSelectedMessageId = selectedMessages.at(-1);
+      const lastSelectedMessage = messages.find(
+        (m) => m.id === lastSelectedMessageId
+      );
+      const currentMessage = messages.find((m) => m.id === messageId);
+      if (lastSelectedMessage === undefined || currentMessage === undefined) {
+        return;
+      }
+      const newSelectedMessages = [...selectedMessages];
+      newSelectedMessages.push(messageId);
+      for (
+        let i = messages.indexOf(currentMessage);
+        isBefore(currentMessage.date, lastSelectedMessage.date)
+          ? i < messages.indexOf(lastSelectedMessage)
+          : i >= messages.indexOf(lastSelectedMessage);
+        isBefore(currentMessage.date, lastSelectedMessage.date) ? i++ : i--
+      ) {
+        const itemId = messages[i].id;
+        if (!newSelectedMessages.includes(itemId)) {
+          newSelectedMessages.push(itemId);
+        }
+      }
+      setSelectedMessages(newSelectedMessages);
+      return;
+    }
+    const newSelectedMessages = toggleArray(selectedMessages, messageId);
+    setSelectedMessages(newSelectedMessages);
+    if (newSelectedMessages.length === 0) {
+      handleSelectModeOff();
+    }
+  };
+
+  const handleSelectModeOn = (): void => {
+    setSelectMessageMode(true);
+  };
+  const handleSelectModeOff = (): void => {
+    setSelectMessageMode(false);
+    setSelectedMessages([]);
+  };
+
+  const options = [
+    {
+      value: '1',
+      label: 'Edit',
+      icon: 'edit',
+      onClick: () => {
+        navigate('user/edit');
+      },
+    },
+    {
+      value: '2',
+      label: 'Select messages',
+      icon: 'select',
+      onClick: handleSelectModeOn,
+    },
+    { value: '3', label: 'Mute', icon: 'mute' },
+    {
+      value: '4',
+      label: 'Block user',
+      icon: 'block',
+      dividerAfter: true,
+    },
+    {
+      value: '5',
+      label: 'Delete chat',
+      icon: 'delete',
+      iconProps: { className: 'errorIcon' },
+      labelClassName: 'text_color_error',
+    },
+  ];
+
+  if (isMobileLayout) {
+    options.unshift({
+      value: '0',
+      label: 'Search',
+      icon: 'search2',
+      onClick: () => {
+        navigate('search');
+      },
+    });
+  }
+
+  const contextMenuOptions = [
+    {
+      value: 'reply',
+      label: 'Reply',
+      icon: 'reply',
+    },
+    {
+      value: 'edit',
+      label: 'Edit',
+      icon: 'edit',
+    },
+    {
+      value: 'copy',
+      label: 'Copy Text',
+      icon: 'copy',
+      onClick: () => {
+        if (contextMenu === null) return;
+        copyToClipboard(contextMenu.message.text);
+      },
+    },
+    {
+      value: 'pin',
+      label: 'Pin',
+      icon: 'pin',
+    },
+    {
+      value: 'forward',
+      label: 'Forward',
+      icon: 'reply',
+      iconProps: { style: { transform: 'scaleX(-1)' } },
+    },
+    {
+      value: 'select',
+      label: 'Select',
+      icon: 'select',
+      onClick: () => {
+        handleSelectModeOn();
+        if (contextMenu === null) return;
+        setSelectedMessages([contextMenu?.message.id]);
+      },
+    },
+    {
+      value: 'delete',
+      label: 'Delete',
+      icon: 'delete',
+      iconProps: { className: 'errorIcon' },
+      labelClassName: 'text_color_error',
+      onClick: handleDeleteMessageDialogOpen,
+    },
+  ];
 
   useEffect(() => {
     const current = scrollRef.current;
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (!current) return;
+    if (current === null) return;
     current.scrollToBottom();
   }, [scrollRef, messagesData]);
 
+  useEffect(() => {
+    setScrollTransition(true);
+  }, []);
+
   return (
     <>
-      <div className={classes.wrapper}>
-        <Link to={'/1/user'} className={clsx('header', classes.header)}>
-          <div className={classes.chatLabel}>
-            <CustomAvatar name={'Поляк'} />
-            <div className={classes.textContainer}>
-              <Typography weight={600}>Поляк </Typography>
-              <Typography color={'secondary'} size={'xs'}>
-                last seen 5 min ago
-              </Typography>
+      <div
+        className={classes.wrapper}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (selectMessageMode) e.stopPropagation();
+          if (e.key === 'Escape') {
+            handleSelectModeOff();
+          }
+        }}
+      >
+        <CustomDialogue
+          title={'Delete message'}
+          content={'Are you sure you want to delete this message?'}
+          open={deleteMessageDialogOpen}
+          classes={{ buttons: classes.dialogButtons }}
+          slots={{
+            submit: (
+              <>
+                <CustomButton color={'error'}>delete just for me</CustomButton>
+                <CustomButton color={'error'}>
+                  delete for me and Поляк
+                </CustomButton>
+              </>
+            ),
+          }}
+          onClose={handleDeleteMessageDialogClose}
+        />
+        <div className={clsx('header', classes.header)}>
+          {width <= 850 && (
+            <CustomIconButton onClick={goBack}>
+              <AnimatedIcon icon={'arrow'} />
+            </CustomIconButton>
+          )}
+          <CustomLink to={'user'} className={classes.link}>
+            <div className={classes.chatLabel}>
+              <CustomAvatar name={'Поляк'} />
+              <div className={classes.textContainer}>
+                <Typography weight={600}>Поляк </Typography>
+                <Typography color={'secondary'} size={'xs'}>
+                  last seen 5 min ago
+                </Typography>
+              </div>
             </div>
-          </div>
+          </CustomLink>
+
           <div
             style={{
               display: 'flex',
-              gap: '20px',
+              gap: '10px',
               alignItems: 'center',
             }}
           >
+            <CustomMenu
+              closeOnClick
+              mode={'click'}
+              options={options}
+              placement={'top-end'}
+              offset={{ top: 12, right: 0 }}
+            >
+              <CustomIconButton>
+                <SvgSelector id="more" className={classes.actionIcon} />
+              </CustomIconButton>
+            </CustomMenu>
             {width > 850 && (
-              <SvgSelector
-                id="settings"
-                style={{
-                  fill: 'gray',
-                  width: '26px',
+              <CustomIconButton
+                onClick={() => {
+                  navigate('search');
                 }}
-              />
+              >
+                <SvgSelector id="search2" className={classes.actionIcon} />
+              </CustomIconButton>
             )}
-            {width > 850 && <CustomAvatar name={'Zanuda'} size="tiny" />}
           </div>
-        </Link>
-        <div className={classes.messages}>
-          <Scroll ref={scrollRef}>
+        </div>
+        <div
+          className={classes.messages}
+          onContextMenu={(e) => {
+            if (selectMessageMode) return;
+            e.preventDefault();
+          }}
+        >
+          <CustomContextMenu
+            open={contextMenu !== null}
+            onClose={handleClose}
+            anchorReference="anchorPosition"
+            closeOnClick
+            anchorPosition={
+              contextMenu !== null
+                ? { top: contextMenu.mouseY, left: contextMenu.mouseX }
+                : undefined
+            }
+            transformOrigin={{
+              horizontal: 'left',
+              vertical:
+                (contextMenu?.mouseY ?? 0) > window.innerHeight / 2
+                  ? 'bottom'
+                  : 'top',
+            }}
+            options={contextMenuOptions}
+          />
+          <Scroll ref={scrollRef} smoothScroll={scrollTransition}>
             {structuredMessages.map((messagesBlock, i) => (
               <div
                 key={i}
-                className={clsx(classes.container, classes.blockWrapper)}
+                className={clsx(classes.container, classes.blockWrapper, {
+                  [classes.selectMode]: selectMessageMode,
+                })}
               >
                 <div
                   style={{
@@ -362,7 +564,16 @@ const Chat: React.FC = () => {
                 </div>
                 <TransitionGroup key={i} className={classes.block}>
                   {messagesBlock.map((message, j) => (
-                    <Collapse key={message.id}>
+                    <CSSTransition
+                      key={message.id}
+                      classNames={{
+                        enter: classes.enter,
+                        enterActive: classes.enterActive,
+                        exit: classes.exit,
+                        exitActive: classes.exitActive,
+                      }}
+                      timeout={200}
+                    >
                       <Message
                         date={message.date}
                         isOwn={message.user.id === 1}
@@ -372,8 +583,21 @@ const Chat: React.FC = () => {
                         sent={message.sent}
                         user={message.user}
                         text={message.text}
+                        selectMode={selectMessageMode}
+                        isSelected={selectedMessages.includes(message.id)}
+                        isActive={
+                          message.id === (contextMenu?.message.id ?? -1)
+                        }
+                        onClick={(e) => {
+                          if (!selectMessageMode) return;
+                          handleSelectMessage(e, message.id);
+                        }}
+                        onContextMenu={(e) => {
+                          if (selectMessageMode) return;
+                          handleContextMenu(e, message);
+                        }}
                       />
-                    </Collapse>
+                    </CSSTransition>
                   ))}
                 </TransitionGroup>
               </div>
@@ -385,24 +609,51 @@ const Chat: React.FC = () => {
             [classes.mobile]: width <= 750,
           })}
         >
-          <ChatInput
-            value={message}
-            onChange={handleChangeMessage}
-            onSubmit={handleSubmit}
-          />
+          <SwitchTransition>
+            <CSSTransition
+              key={selectMessageMode ? '1' : '2'}
+              timeout={300}
+              classNames={{
+                enter: classes.tightEnter,
+                enterActive: classes.tightEnterActive,
+                exit: classes.tightExit,
+                exitActive: classes.tightExitActive,
+              }}
+            >
+              <div
+                className={clsx({
+                  [classes.tight]: selectMessageMode && width > 750,
+                })}
+              >
+                {!selectMessageMode ? (
+                  <ChatInput
+                    value={message}
+                    onChange={handleChangeMessage}
+                    onSubmit={handleSubmit}
+                  />
+                ) : (
+                  <SelectToolbar
+                    selectedCount={selectedMessages.length}
+                    onDelete={handleDeleteMessageDialogOpen}
+                    onCancel={handleSelectModeOff}
+                  />
+                )}
+              </div>
+            </CSSTransition>
+          </SwitchTransition>
         </div>
       </div>
       <SwitchTransition>
         <CSSTransition
           unmountOnExit
+          mountOnEnter
           nodeRef={nodeRef as Ref<HTMLElement | undefined> | undefined}
           timeout={300}
           classNames={'right-block'}
-          // in={location.pathname === '/1/user'}
-          in={location.pathname.includes('1/user')}
-          key={location.pathname.split('/').at(2) ?? ''}
+          in={location.pathname.split('/').length > 2}
+          key={location.pathname.split('/').slice(0, 3).length ?? ''}
         >
-          {location.pathname.includes('1/user') ? (
+          {location.pathname.split('/').length > 2 ? (
             <div
               className={'right-block'}
               ref={nodeRef as RefObject<HTMLDivElement>}
@@ -410,7 +661,7 @@ const Chat: React.FC = () => {
               {currentOutlet}
             </div>
           ) : (
-            <div />
+            <></>
           )}
         </CSSTransition>
       </SwitchTransition>

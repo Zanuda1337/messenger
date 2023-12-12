@@ -7,7 +7,7 @@ const Size = {
   tiny: 30,
   small: 35,
   medium: 48,
-  large: 60,
+  large: 105,
 };
 
 type Sizes = keyof typeof Size;
