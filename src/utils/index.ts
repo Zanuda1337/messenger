@@ -52,7 +52,7 @@ export const createReducersHandler = <T extends StateBase>(
   builder.addMatcher(isPendingAction, (state) => {
     state.status = 'loading';
   });
-  builder.addMatcher(isRejectedAction, (state, { payload }) => {
+  builder.addMatcher(isRejectedAction, (state) => {
     state.status = 'failed';
   });
   builder.addMatcher(isFulfilledAction, (state) => {
