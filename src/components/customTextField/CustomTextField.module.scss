@@ -44,3 +44,16 @@
     }
   }
 }
+
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.label {
+  position: absolute;
+  bottom: -5px;
+  right: 10px;
+  padding: 0 5px;
+  background-color: var(--bg-secondary);
+}

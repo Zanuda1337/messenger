@@ -12,6 +12,7 @@ import CustomAvatar from 'src/components/customAvatar/CustomAvatar';
 import { clamp } from 'src/utils';
 import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
 import { Vector2 } from 'src/types';
+import { User } from 'src/app/app.types';
 
 const MAX_IMAGES_ITEMS = 5;
 const ZOOM_STEP = 0.7;
@@ -67,9 +68,10 @@ interface Image {
 
 interface ProfilePictureProps {
   images: Image[];
+  user: User | null;
 }
 
-const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
+const ProfilePicture: React.FC<ProfilePictureProps> = ({ images, user }) => {
   const { width } = useDevice();
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeModalIndex, setActiveModalIndex] = useState(0);
@@ -217,10 +219,10 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
             <div className={classes.modal}>
               <div className={clsx(classes.header, 'header')}>
                 <div className={chatClasses.chatLabel}>
-                  <CustomAvatar name={'Поляк'} />
+                  <CustomAvatar name={clsx(user?.name, user?.surname)} />
                   <div className={chatClasses.textContainer}>
                     <Typography weight={600} color={'primary-light'}>
-                      Поляк
+                      {clsx(user?.name, user?.surname)}
                     </Typography>
                     <Typography color={'secondary-light'} size={'xs'}>
                       Profile photo
@@ -237,10 +239,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
                       >
                         <SvgSelector
                           id={action.icon}
-                          className={clsx(
-                            'iconButton',
-                            'light'
-                          )}
+                          className={clsx('iconButton', 'light')}
                         />
                       </CustomIconButton>
                     ))}
@@ -283,7 +282,9 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
                           disabled={zoomFactor <= 1}
                           scale={zoomFactor}
                           position={draggablePos}
-                          axis={(pictureSize?.width ?? 0) > width ? 'both' : 'y'}
+                          axis={
+                            (pictureSize?.width ?? 0) > width ? 'both' : 'y'
+                          }
                           bounds={{
                             bottom:
                               ((pictureSize?.height ?? 0) -
@@ -383,7 +384,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images }) => {
         </div>
         <div className={classes.footer}>
           <Typography size={'xl'} color={'primary-light'} weight={700}>
-            Поляк
+            {clsx(user?.name, user?.surname)}
           </Typography>
           <Typography color={'secondary-light'} weight={500}>
             Last seen 27 minutes ago

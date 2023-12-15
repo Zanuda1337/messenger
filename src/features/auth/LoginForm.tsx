@@ -8,9 +8,8 @@ import CustomIconButton from 'src/components/customIconButton/CustomIconButton';
 import SvgSelector from 'src/components/svgSelector/SvgSelector';
 import { Controller, useForm } from 'react-hook-form';
 
-interface LoginFields {
+export interface LoginFields {
   email: string;
-  rememberMe: boolean;
   password: string;
 }
 

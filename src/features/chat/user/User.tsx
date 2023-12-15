@@ -3,8 +3,20 @@ import ProfilePicture from 'src/features/chat/user/profilePicture/ProfilePicture
 import ListItem from 'src/components/listItem/ListItem';
 import CustomSwitch from 'src/components/customSwitch/CustomSwitch';
 import { useCopyToClipboard } from 'src/hooks';
+import { User as IUser } from 'src/app/app.types';
 
-const User: React.FC = () => {
+interface UserProps {
+  user: IUser | null;
+  onChangeNotifications?: () => void;
+  hideNotifications?: boolean;
+  notifications?: boolean;
+}
+const User: React.FC<UserProps> = ({
+  user,
+  onChangeNotifications,
+  hideNotifications = false,
+  notifications,
+}) => {
   const copyToClipboard = useCopyToClipboard();
   const handleCopy =
     (label: string, text: string): (() => void) =>
@@ -14,6 +26,7 @@ const User: React.FC = () => {
   return (
     <>
       <ProfilePicture
+        user={user}
         images={[
           {
             url: 'https://upload.wikimedia.org/wikipedia/ru/9/94/%D0%93%D0%B8%D0%B3%D0%B0%D1%87%D0%B0%D0%B4.jpg',
@@ -46,18 +59,25 @@ const User: React.FC = () => {
         <ListItem
           iconId="alternate"
           title={'Username'}
-          subtitle={'allenain'}
+          subtitle={user?.username}
           slotProps={{
             titleProps: { color: 'tertiary', size: 's' },
             subtitleProps: { size: 'm' },
           }}
-          onClick={handleCopy('Username', '@allenain')}
+          onClick={handleCopy('Username', `@${user?.username}`)}
         />
-        <ListItem
-          iconId="notifications"
-          title={'Notifications'}
-          endAdornment={<CustomSwitch />}
-        />
+        {!hideNotifications && (
+          <ListItem
+            iconId="notifications"
+            title={'Notifications'}
+            endAdornment={
+              <CustomSwitch
+                checked={notifications}
+                onChange={onChangeNotifications}
+              />
+            }
+          />
+        )}
       </div>
     </>
   );

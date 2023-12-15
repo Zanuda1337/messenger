@@ -1,15 +1,12 @@
 import React from 'react';
 import classes from './Auth.module.scss';
 import CustomTextField from 'src/components/customTextField/CustomTextField';
-import ListItem from 'src/components/listItem/ListItem';
-import CustomCheckbox from 'src/components/customCheckbox/CustomCheckbox';
 import CustomButton from 'src/components/customButton/CustomButton';
 import { Form } from 'src/features/auth/Auth.types';
 import { Controller, useForm } from 'react-hook-form';
 
 export interface EmailFields {
   email: string;
-  rememberMe: boolean;
 }
 
 interface EmailFormProps extends Form<EmailFields> {}
@@ -60,30 +57,6 @@ const EmailForm: React.FC<EmailFormProps> = ({
             fullWidth
             onChange={onChange}
             onBlur={onBlur}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="rememberMe"
-        render={({ field: { onChange, value } }) => (
-          <ListItem
-            className={classes.check}
-            title={'Keep me signed in'}
-            onClick={() => {
-              onChange(!value);
-            }}
-            slots={{
-              icon: (
-                <CustomCheckbox
-                  checked={value}
-                  onChange={() => {
-                    onChange(!value);
-                  }}
-                />
-              ),
-            }}
-            disableRipple
           />
         )}
       />

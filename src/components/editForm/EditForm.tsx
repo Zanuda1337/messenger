@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import classes from '../User.module.scss';
+import classes from 'src/features/chat/user/User.module.scss';
 import CustomAvatar from 'src/components/customAvatar/CustomAvatar';
 import Typography from 'src/components/typography/Typography';
 import ListItem from 'src/components/listItem/ListItem';
@@ -11,7 +11,7 @@ interface EditProps {
   user?: undefined;
 }
 
-const Edit: React.FC<EditProps> = ({ user }) => {
+const EditForm: React.FC<EditProps> = ({ user }) => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   const handleOpenDialog = (): void => {
@@ -75,4 +75,4 @@ const Edit: React.FC<EditProps> = ({ user }) => {
   );
 };
 
-export default Edit;
+export default EditForm;

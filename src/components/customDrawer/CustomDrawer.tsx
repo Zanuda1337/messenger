@@ -9,6 +9,7 @@ import Typography from 'src/components/typography/Typography';
 import { clsx } from 'clsx';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useTheme } from 'src/hooks';
+import { useAppSelector } from 'src/app/hooks';
 
 interface Option {
   icon: string;
@@ -33,8 +34,8 @@ const CustomDrawer: React.FC<CustomDrawerProps> = ({
   shadow,
   ...props
 }) => {
+  const user = useAppSelector((state) => state.app.user);
   const [isProfilesShown, setProfilesShown] = useState(false);
-
   const { theme, toggleTheme } = useTheme();
 
   const toggleProfile = (): void => {
@@ -60,7 +61,7 @@ const CustomDrawer: React.FC<CustomDrawerProps> = ({
     >
       <div className={classes.header}>
         <div className={classes.block}>
-          <CustomAvatar name={'Иван Пашкин'} size={'medium'} />
+          <CustomAvatar name={clsx(user?.name, user?.surname)} size={'medium'} />
           <CustomIconButton onClick={toggleTheme} disableProgressOnHover>
             <SwitchTransition>
               <CSSTransition
@@ -81,9 +82,9 @@ const CustomDrawer: React.FC<CustomDrawerProps> = ({
         <div className={classes.block} onClick={toggleProfile}>
           <div className={classes.column}>
             <Typography weight={600} size={'m'}>
-              Zanuda
+              {user?.username}
             </Typography>
-            <Typography color={'tertiary'}>dsnake456@gmail.com</Typography>
+            <Typography color={'tertiary'}>{user?.email}</Typography>
           </div>
           <CustomIconButton
             onClick={toggleProfile}
@@ -121,9 +122,7 @@ const CustomDrawer: React.FC<CustomDrawerProps> = ({
                   classes={{ block: classes.block }}
                   slots={{
                     icon: (
-                      <CustomAvatar
-                        name={`${profile.name} ${profile.surname}`}
-                      />
+                      <CustomAvatar name={clsx(user?.name, user?.surname)} />
                     ),
                   }}
                 />

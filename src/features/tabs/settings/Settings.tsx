@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import tabsClasses from '../Tabs.module.scss';
 import User from 'src/features/chat/user/User';
 import TabHeader from 'src/components/tabHeader/TabHeader';
@@ -6,9 +6,31 @@ import ListItem from 'src/components/listItem/ListItem';
 import Scroll from 'src/components/scroll/Scroll';
 import Typography from 'src/components/typography/Typography';
 import { useTabs } from 'src/hooks';
+import { useAppSelector, useBoundActions } from 'src/app/hooks';
+import CustomIconButton from 'src/components/customIconButton/CustomIconButton';
+import SvgSelector from 'src/components/svgSelector/SvgSelector';
+import CustomMenu from 'src/components/customMenu/CustomMenu';
+import CustomDialogue from 'src/components/customDialogue/CustomDialogue';
+import { logoutAsync } from 'src/app/app.slice';
 
 const Settings: React.FC = () => {
+  const user = useAppSelector((state) => state.app.user);
+  const appStatus = useAppSelector((state) => state.app.status);
+  const boundActions = useBoundActions({ logoutAsync });
+
+  const [logoutDialogOpen, setLogoutDialogOpen] = useState(false);
   const { navigateTab } = useTabs();
+  const handleCloseLogoutDialog = (): void => {
+    setLogoutDialogOpen(false);
+  };
+  const handleOpenLogoutDialog = (): void => {
+    setLogoutDialogOpen(true);
+  };
+  const handleLogout = async (): Promise<void> => {
+    await boundActions.logoutAsync();
+    handleCloseLogoutDialog();
+  };
+
   const navigation = useMemo(
     () => [
       {
@@ -64,9 +86,53 @@ const Settings: React.FC = () => {
 
   return (
     <div className={tabsClasses.wrapper}>
-      <TabHeader label={'Settings'} />
+      <CustomDialogue
+        content={'Are you sure you want to log out?'}
+        open={logoutDialogOpen}
+        slotProps={{
+          submit: {
+            color: 'error',
+            children: 'log out',
+            fetching: appStatus === 'loading',
+          },
+        }}
+        onSubmit={() => {
+          void handleLogout();
+        }}
+        onClose={handleCloseLogoutDialog}
+      />
+      <TabHeader
+        label={'Settings'}
+        endAdornment={
+          <>
+            <CustomIconButton
+              onClick={() => {
+                navigateTab('user_edit');
+              }}
+            >
+              <SvgSelector id="edit" className={'iconButton'} />
+            </CustomIconButton>
+            <CustomMenu
+              options={[
+                {
+                  icon: 'logout',
+                  label: 'log out',
+                  value: 'logout',
+                  onClick: handleOpenLogoutDialog,
+                },
+              ]}
+              offset={{ top: 15, right: -15 }}
+              placement={'top-end'}
+            >
+              <CustomIconButton>
+                <SvgSelector id="more" className={'iconButton'} />
+              </CustomIconButton>
+            </CustomMenu>
+          </>
+        }
+      />
       <Scroll>
-        <User />
+        <User user={user} hideNotifications />
         <div className={'border'} />
         <div className={'list'}>
           {navigation.map((nav) => (

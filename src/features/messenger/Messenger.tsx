@@ -1,9 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { Ref, RefObject } from 'react';
+import React from 'react';
 import { useLocation, useOutlet } from 'react-router-dom';
 import classes from './Messenger.module.scss';
 import { useDevice, useTabs } from 'src/hooks';
-import { routes } from 'src/router/Router';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const Messenger: React.FC = () => {
@@ -14,8 +12,6 @@ const Messenger: React.FC = () => {
   const { outlet, key } = useTabs();
 
   const currentOutlet = useOutlet();
-  const { nodeRef } =
-    routes.find((route) => route.path === location.pathname) ?? {};
 
   return (
     <div className={classes.messenger}>
@@ -37,18 +33,12 @@ const Messenger: React.FC = () => {
       <TransitionGroup component={'main'}>
         <CSSTransition
           key={location.pathname.split('/')[1] !== '' ? `${0}` : '1'}
-          nodeRef={nodeRef as Ref<HTMLElement | undefined> | undefined}
           timeout={300}
           classNames={width < 850 ? 'roll' : 'page'}
           unmountOnExit
         >
           {width < 850 ? (
-            <div
-              ref={nodeRef as RefObject<HTMLDivElement>}
-              className={width < 850 ? 'roll' : 'page'}
-            >
-              {currentOutlet}
-            </div>
+            <div className={width < 850 ? 'roll' : 'page'}>{currentOutlet}</div>
           ) : (
             <>{currentOutlet}</>
           )}

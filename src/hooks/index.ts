@@ -44,7 +44,7 @@ const useThemeDetector = (): { isDark: boolean } => {
     window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   const [isDarkTheme, setIsDarkTheme] = useState(getCurrentTheme());
-  const mqListener = (event: any): void => {
+  const mqListener = (event: MediaQueryListEvent): void => {
     setIsDarkTheme(event.matches);
   };
 

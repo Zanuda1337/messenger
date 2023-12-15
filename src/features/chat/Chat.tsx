@@ -1,11 +1,4 @@
-import React, {
-  Ref,
-  RefObject,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classes from './Chat.module.scss';
 import ChatInput from 'src/components/chatInput/ChatInput';
 import Message from './Message';
@@ -22,7 +15,6 @@ import {
 } from 'react-transition-group';
 import Typography from 'src/components/typography/Typography';
 import SvgSelector from 'src/components/svgSelector/SvgSelector';
-import { routes } from 'src/router/Router';
 import CustomIconButton from 'src/components/customIconButton/CustomIconButton';
 import AnimatedIcon from 'src/components/animatedIcon/AnimatedIcon';
 import CustomMenu from 'src/components/customMenu/CustomMenu';
@@ -195,9 +187,9 @@ const messages: IMessage[] = [
   },
 ];
 
-const structMessages = (messages: any[]): any[][] => {
-  const blocks: any[][] = [];
-  let block: any[] = [];
+const structMessages = (messages: IMessage[]): IMessage[][] => {
+  const blocks: IMessage[][] = [];
+  let block: IMessage[] = [];
   messages.forEach((message, i) => {
     const prevMessage = messages[i - 1];
     if (prevMessage === undefined || prevMessage.user.id === message.user.id) {
@@ -218,8 +210,6 @@ const Chat: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const copyToClipboard = useCopyToClipboard();
-  const { nodeRef } =
-    routes.find((route) => route.path === location.pathname) ?? {};
   const { width, isMobileLayout } = useDevice();
   const { goBack } = useHistory();
 
@@ -340,7 +330,7 @@ const Chat: React.FC = () => {
       label: 'Edit',
       icon: 'edit',
       onClick: () => {
-        navigate('user/edit');
+        navigate('user/editForm');
       },
     },
     {
@@ -647,19 +637,13 @@ const Chat: React.FC = () => {
         <CSSTransition
           unmountOnExit
           mountOnEnter
-          nodeRef={nodeRef as Ref<HTMLElement | undefined> | undefined}
           timeout={300}
           classNames={'right-block'}
           in={location.pathname.split('/').length > 2}
           key={location.pathname.split('/').slice(0, 3).length ?? ''}
         >
           {location.pathname.split('/').length > 2 ? (
-            <div
-              className={'right-block'}
-              ref={nodeRef as RefObject<HTMLDivElement>}
-            >
-              {currentOutlet}
-            </div>
+            <div className={'right-block'}>{currentOutlet}</div>
           ) : (
             <></>
           )}

@@ -25,8 +25,8 @@ const TabHeader: React.FC<TabHeaderProps> = ({ label, endAdornment }) => {
           <Typography size={'xl'} weight={700}>
             {label}
           </Typography>
-          {endAdornment}
         </div>
+        <div className={classes.adornment}>{endAdornment}</div>
       </div>
     </div>
   );

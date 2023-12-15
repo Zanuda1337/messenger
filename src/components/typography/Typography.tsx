@@ -23,7 +23,7 @@ export interface TypographyProps {
   translate?: boolean;
   className?: string;
   style?: React.CSSProperties;
-  children:
+  children?:
     | JSX.Element
     | string
     | number

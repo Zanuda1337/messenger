@@ -2,12 +2,12 @@
 @import 'src/assets/styles/variables';
 
 .container {
-  padding: $indent $indent $indent/4 $indent;
+  padding: $indent $indent $indent $indent;
   display: flex;
   flex-direction: column;
   gap: 20px;
   @media (max-width: 850px) {
-    padding: $indent_mobile $indent_mobile $indent_mobile/4 $indent_mobile;
+    padding: $indent_mobile $indent_mobile $indent_mobile $indent_mobile;
   }
 }
 

@@ -272,6 +272,11 @@ const SvgSelector: React.FC<SvgSelectorProps> = ({ id, className, style }) => {
         <path d="M17.77 3.77 16 2 6 12l10 10 1.77-1.77L9.54 12z" />
       </svg>
     ),
+    check: (
+      <svg viewBox="0 0 24 24" className={className} style={style}>
+        <path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+      </svg>
+    ),
   };
 
   // eslint-disable-next-line no-prototype-builtins

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Dialogue from 'src/features/tabs/dialogs/Dialogue';
 import classes from './Dialogs.module.scss';
 import Scroll from 'src/components/scroll/Scroll';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Logo from 'src/assets/images/logo.png';
 import Typography from 'src/components/typography/Typography';
 import CustomMenu from 'src/components/customMenu/CustomMenu';
@@ -14,6 +14,8 @@ import SearchField from 'src/components/searchField/SearchField';
 import CustomDialogue from 'src/components/customDialogue/CustomDialogue';
 import CustomDrawer from 'src/components/customDrawer/CustomDrawer';
 import Swipeable from 'src/components/swipeable/Swipeable';
+import { useAppSelector, useBoundActions } from 'src/app/hooks';
+import { logoutAsync } from 'src/app/app.slice';
 
 const dialogs = [
   {
@@ -188,6 +190,8 @@ const dialogs = [
 ];
 
 const Dialogs: React.FC = () => {
+  const boundActions = useBoundActions({ logoutAsync });
+  const appStatus = useAppSelector((state) => state.app.status);
   const params = useParams();
   const { isMobileLayout } = useDevice();
 
@@ -200,14 +204,14 @@ const Dialogs: React.FC = () => {
 
   const [focused, setFocused] = useState(false);
   const { navigateTab } = useTabs();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
 
   const handleCloseLogoutDialog = (): void => {
     setLogoutDialogOpen(false);
   };
-  const handleLogout = (): void => {
-    navigate('/auth');
+  const handleLogout = async (): Promise<void> => {
+    await boundActions.logoutAsync();
     handleCloseLogoutDialog();
   };
 
@@ -281,11 +285,6 @@ const Dialogs: React.FC = () => {
     },
   ];
 
-  // const defaultPosition = useMemo(
-  //   () => ({ x: menuOpen ? 320 : 0, y: 0 }),
-  //   [menuOpen]
-  // );
-
   return (
     <div
       className={classes.wrapper}
@@ -297,8 +296,16 @@ const Dialogs: React.FC = () => {
       <CustomDialogue
         content={'Are you sure you want to log out?'}
         open={logoutDialogOpen}
-        slotProps={{ submit: { color: 'error', children: 'log out' } }}
-        onSubmit={handleLogout}
+        slotProps={{
+          submit: {
+            color: 'error',
+            children: 'log out',
+            fetching: appStatus === 'loading',
+          },
+        }}
+        onSubmit={() => {
+          void handleLogout();
+        }}
         onClose={handleCloseLogoutDialog}
       />
       <div className={'header'}>

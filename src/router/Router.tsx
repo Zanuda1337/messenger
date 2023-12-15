@@ -1,23 +1,3 @@
-// import React from 'react';
-// import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import Messenger from 'src/features/messenger/Messenger';
-// import PrivateLayout from 'src/layouts/PrivateLayout';
-//
-// const Router: React.FC = () => {
-//   return (
-//     <BrowserRouter>
-//       <Routes>
-//         <Route element={<PrivateLayout />}>
-//           <Route path={'/*'} element={<Messenger />} />
-//         </Route>
-//       </Routes>
-//     </BrowserRouter>
-//   );
-// };
-//
-// export default Router;
-
-import { createRef } from 'react';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -27,9 +7,7 @@ import Chat from 'src/features/chat/Chat';
 import Messenger from 'src/features/messenger/Messenger';
 import PrivateLayout from 'src/layouts/PrivateLayout';
 import React from 'react';
-import User from 'src/features/chat/user/User';
 import RightSide from 'src/layouts/rightSide/RightSide';
-import Edit from 'src/features/chat/user/edit/Edit';
 import Search from 'src/features/chat/search/Search';
 import HistoryProvider from 'src/providers/HistoryProvider';
 import Dialogs from 'src/features/tabs/dialogs/Dialogs';
@@ -42,53 +20,9 @@ import PrivacyEdit from 'src/features/tabs/privacyEdit/PrivacyEdit';
 import Language from 'src/features/tabs/language/Language';
 import PublicLayout from 'src/layouts/PublicLayout';
 import Auth from 'src/features/auth/Auth';
-
-export const routes = [
-  // {
-  //   path: '/',
-  //   name: 'Dialogs',
-  //   element: <Dialogs />,
-  //   nodeRef: createRef(),
-  //   type: 'left',
-  // },
-  {
-    path: '/:id',
-    name: 'Chat',
-    element: <Chat />,
-    children: [
-      {
-        path: 'user',
-        name: 'User',
-        element: <User />,
-        nodeRef: createRef(),
-      },
-      // {
-      //   path: 'user/edit',
-      //   name: 'Edit',
-      //   element: <Chat />,
-      //   nodeRef: createRef(),
-      // },
-    ],
-    nodeRef: createRef(),
-  },
-];
-
-// export const router = createBrowserRouter([
-//   {
-//     element: <PrivateLayout />,
-//     children: [
-//       {
-//         path: '/',
-//         element: <Messenger />,
-//         children: routes.map((route) => ({
-//           index: route.path === '/',
-//           path: route.path === '/' ? undefined : route.path,
-//           element: route.element,
-//         })),
-//       },
-//     ],
-//   },
-// ]);
+import UserTab from 'src/features/chat/user/UserTab';
+import UserEdit from 'src/features/tabs/userEdit/UserEdit';
+import Edit from 'src/features/chat/user/Edit';
 
 export const rightSideRoutes = [
   {
@@ -97,7 +31,7 @@ export const rightSideRoutes = [
   },
   {
     path: 'user',
-    element: User,
+    element: UserTab,
   },
   {
     path: 'user/edit',
@@ -159,6 +93,11 @@ export const tabs: Tab[] = [
   {
     key: 'privacy',
     element: <Privacy />,
+    previous: 'settings',
+  },
+  {
+    key: 'user_edit',
+    element: <UserEdit />,
     previous: 'settings',
   },
   {

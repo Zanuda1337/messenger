@@ -13,7 +13,6 @@ export interface RegistrationFields {
   password: string;
   confirmPassword: string;
   email: string;
-  rememberMe: boolean;
 }
 
 interface RegistrationFormProps extends Form<RegistrationFields> {

@@ -1,3 +1,11 @@
+import { ActionReducerMapBuilder, AnyAction } from '@reduxjs/toolkit';
+import {
+  FulfilledAction,
+  PendingAction,
+  RejectedAction,
+  StateBase,
+} from 'src/types';
+
 export const stringToColor = (
   string: string,
   // saturation = 80,
@@ -28,4 +36,26 @@ export const toggleArray = <T>(array: T[], item: T): T[] => {
     return array.filter((i) => i !== item);
   }
   return [...array, item];
+};
+
+export const isPendingAction = (action: AnyAction): action is PendingAction =>
+  action.type.endsWith('/pending');
+export const isRejectedAction = (action: AnyAction): action is RejectedAction =>
+  action.type.endsWith('/rejected');
+export const isFulfilledAction = (
+  action: AnyAction
+): action is FulfilledAction => action.type.endsWith('/fulfilled');
+
+export const createReducersHandler = <T extends StateBase>(
+  builder: ActionReducerMapBuilder<T>
+): void => {
+  builder.addMatcher(isPendingAction, (state) => {
+    state.status = 'loading';
+  });
+  builder.addMatcher(isRejectedAction, (state, { payload }) => {
+    state.status = 'failed';
+  });
+  builder.addMatcher(isFulfilledAction, (state) => {
+    state.status = 'idle';
+  });
 };

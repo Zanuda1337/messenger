@@ -5,34 +5,32 @@ import Typography from 'src/components/typography/Typography';
 import Scroll from 'src/components/scroll/Scroll';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import Scrollbars from 'react-custom-scrollbars-2';
-import RegistrationForm from 'src/features/auth/RegistrationForm';
+import RegistrationForm, {
+  RegistrationFields,
+} from 'src/features/auth/RegistrationForm';
 import EmailForm, { EmailFields } from 'src/features/auth/EmailForm';
 import { useNavigate } from 'react-router-dom';
-import LoginForm from 'src/features/auth/LoginForm';
-
-const checkEmail = async (): Promise<{ isUserExist: boolean }> =>
-  await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ isUserExist: true });
-    }, 500);
-  });
-
-const registration = async (): Promise<void> => {
-  await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(null);
-    }, 500);
-  });
-};
+import LoginForm, { LoginFields } from 'src/features/auth/LoginForm';
+import { useAppSelector, useBoundActions } from 'src/app/hooks';
+import {
+  registrationAsync,
+  checkEmailAsync,
+  loginAsync,
+} from 'src/app/app.slice';
 
 const Auth: React.FC = () => {
+  const boundActions = useBoundActions({
+    registrationAsync,
+    checkEmailAsync,
+    loginAsync,
+  });
+  const status = useAppSelector((state) => state.app.status);
+
   const navigate = useNavigate();
-  const [rememberMe, setRememberMe] = useState(true);
   const [email, setEmail] = useState('');
   const [authType, setAuthType] = useState<'email' | 'login' | 'registration'>(
     'email'
   );
-  const [fetching, setFetching] = useState(false);
   const scrollRef = useRef<Scrollbars>(null);
   useEffect(() => {
     if (scrollRef.current === null) return;
@@ -42,32 +40,27 @@ const Auth: React.FC = () => {
   }, [scrollRef, authType]);
 
   const handleSubmitEmail = async (data: EmailFields): Promise<void> => {
-    setRememberMe(data.rememberMe);
     setEmail(data.email);
-    console.log('submit');
-    setFetching(true);
-    const { isUserExist } = await checkEmail();
-    setFetching(false);
-    setAuthType(isUserExist ? 'login' : 'registration');
+    const {
+      data: { isExist },
+    } = await boundActions.checkEmailAsync(data.email).unwrap();
+    setAuthType((isExist as boolean) ? 'login' : 'registration');
   };
-  const handleRegistration = async (): Promise<void> => {
-    setFetching(true);
-    await registration();
-    setFetching(false);
+  const handleRegistration = async (
+    data: RegistrationFields
+  ): Promise<void> => {
+    await boundActions.registrationAsync(data);
     navigate('/');
   };
-  const handleLogin = async (): Promise<void> => {
-    setFetching(true);
-    await registration();
-    setFetching(false);
-    navigate('/');
+  const handleLogin = (data: LoginFields): void => {
+    void boundActions.loginAsync(data);
   };
 
   const forms = {
     email: (
       <EmailForm
-        fetching={fetching}
-        initialValues={{ email, rememberMe }}
+        fetching={status === 'loading'}
+        initialValues={{ email }}
         onSubmit={(data) => {
           void handleSubmitEmail(data);
         }}
@@ -75,16 +68,15 @@ const Auth: React.FC = () => {
     ),
     registration: (
       <RegistrationForm
-        fetching={fetching}
+        fetching={status === 'loading'}
         initialValues={{
           password: '',
           confirmPassword: '',
           username: '',
           email,
-          rememberMe,
         }}
-        onSubmit={() => {
-          void handleRegistration();
+        onSubmit={(data) => {
+          void handleRegistration(data);
         }}
         onCancel={() => {
           setAuthType('email');
@@ -93,11 +85,9 @@ const Auth: React.FC = () => {
     ),
     login: (
       <LoginForm
-        fetching={fetching}
-        initialValues={{ password: '', email, rememberMe }}
-        onSubmit={() => {
-          void handleLogin();
-        }}
+        fetching={status === 'loading'}
+        initialValues={{ password: '', email }}
+        onSubmit={handleLogin}
         onCancel={() => {
           setAuthType('email');
         }}
