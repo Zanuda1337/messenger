@@ -15,12 +15,12 @@ export interface ITabsContext {
   setKey: React.Dispatch<React.SetStateAction<string>>;
 }
 export const TabsContext = createContext<ITabsContext>({
-  key: 'dialogs',
+  key: 'root',
   setKey: () => {},
 });
 
 const TabsProvider: React.FC<TabsProviderProps> = ({ children }) => {
-  const [key, setKey] = useState('dialogs');
+  const [key, setKey] = useState('root');
   return (
     <TabsContext.Provider value={{ key, setKey }}>
       {children}

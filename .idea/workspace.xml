@@ -19,52 +19,47 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41d6df89-7c54-4f47-b456-4e9d7dce311c" name="Default Changelist" comment="updates">
-      <change afterPath="$PROJECT_DIR$/.idea/prettier.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/app.slice.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/app.types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/forms/profileEditForm/ProfileEditForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+    <list default="true" id="41d6df89-7c54-4f47-b456-4e9d7dce311c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/api/profileApi/profileApi.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/imageCropper/ImageCropper.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/imageCropper/ImageCropper.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/consts/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/tabs/root/dialogs/Dialogs.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/features/tabs/root/search/Search.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/authApi/authApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/authApi/authApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/authApi/authApi.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/authApi/authApi.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/profileApi/profileApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/profileApi/profileApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/hooks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/hooks.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/dark_theme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/dark_theme.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/styles/global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/global.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/styles/mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/mixins.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/light_theme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/light_theme.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/customAvatar/CustomAvatar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customAvatar/CustomAvatar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/customDrawer/CustomDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customDrawer/CustomDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/customIconButton/CustomIconButton.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customIconButton/CustomIconButton.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/customIconButton/CustomIconButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customIconButton/CustomIconButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/customSlider/CustomSlider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customSlider/CustomSlider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/customTextField/CustomTextField.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customTextField/CustomTextField.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/customTextField/CustomTextField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/customTextField/CustomTextField.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/editForm/EditForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/editForm/EditForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/forms/profileEditForm/ProfileEditForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/forms/profileEditForm/ProfileEditForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/listItem/ListItem.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/listItem/ListItem.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/listItem/ListItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/listItem/ListItem.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/svgSelector/SvgSelector.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/svgSelector/SvgSelector.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabHeader/TabHeader.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tabHeader/TabHeader.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabHeader/TabHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tabHeader/TabHeader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/typography/Typography.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/typography/Typography.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/Auth.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/Auth.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/Auth.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/Auth.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/EmailForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/EmailForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/LoginForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/LoginForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/auth/RegistrationForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/auth/RegistrationForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chat/Chat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chat/Chat.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/chat/user/User.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chat/user/User.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/chat/user/User.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chat/user/User.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/chat/user/edit/Edit.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/chat/user/profilePicture/ProfilePicture.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chat/user/profilePicture/ProfilePicture.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/chat/user/profilePicture/ProfilePicture.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/chat/user/profilePicture/ProfilePicture.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/messenger/Messenger.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/messenger/Messenger.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/tabs/dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tabs/dialogs/Dialogs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/tabs/settings/Settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tabs/settings/Settings.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/tabs/dialogs/Dialogs.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tabs/root/Root.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/tabs/dialogs/Dialogs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tabs/root/Root.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/tabs/dialogs/Dialogue.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tabs/root/Dialogue.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/tabs/userEdit/UserEdit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/tabs/userEdit/UserEdit.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/PrivateLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/PrivateLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/PublicLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/PublicLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/providers/HistoryProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/providers/HistoryProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/providers/TabsProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/providers/TabsProvider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/router/Router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/Router.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,6 +68,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -87,25 +87,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Zanuda/Documents/Projects/ukids_front&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\Zanuda\\Documents\\Projects\\messenger\\node_modules\\prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Zanuda\\Documents\\Projects\\messenger\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Zanuda/Documents/Projects/ukids_front",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\Zanuda\\Documents\\Projects\\messenger\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "editing.templates",
+    "ts.external.directory.path": "C:\\Users\\Zanuda\\Documents\\Projects\\messenger\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Zanuda\Documents\Projects\messenger\src\components" />
@@ -204,6 +204,10 @@
       <workItem from="1702486106387" duration="3127000" />
       <workItem from="1702509123519" duration="10832000" />
       <workItem from="1702559400771" duration="16454000" />
+      <workItem from="1702644044780" duration="27419000" />
+      <workItem from="1702687156432" duration="15418000" />
+      <workItem from="1702704678343" duration="1934000" />
+      <workItem from="1702754502555" duration="22630000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1699644787533</created>
@@ -233,7 +237,31 @@
       <option name="project" value="LOCAL" />
       <updated>1702391695892</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="connected api">
+      <option name="closed" value="true" />
+      <created>1702646261934</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702646261934</updated>
+    </task>
+    <task id="LOCAL-00006" summary="connected api">
+      <option name="closed" value="true" />
+      <created>1702646300674</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1702646300674</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fixes">
+      <option name="closed" value="true" />
+      <created>1702646423827</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702646423827</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,6 +295,8 @@
     <MESSAGE value="add unversioned files" />
     <MESSAGE value="realize profile picture" />
     <MESSAGE value="updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates" />
+    <MESSAGE value="connected api" />
+    <MESSAGE value="fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
   </component>
 </project>

@@ -19,7 +19,7 @@ const PrivateLayout: React.FC = () => {
 
   return (
     <>
-      {(key !== 'dialogs' || location.pathname !== '/') && <SwipeBack />}
+      {(key !== 'root' || location.pathname !== '/') && <SwipeBack />}
       <Outlet />
     </>
   );

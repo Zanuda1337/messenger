@@ -1,15 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { authApi } from 'src/api/authApi/authApi';
-import { LoginRequest, RegistrationRequest } from 'src/api/authApi/authApi.types';
+import {
+  LoginRequest,
+  RegistrationRequest,
+} from 'src/api/authApi/authApi.types';
 import { StateStatus } from 'src/types';
 import { createReducersHandler } from 'src/utils';
 import { User } from 'src/app/app.types';
+import { profileApi } from 'src/api/profileApi/profileApi';
+import { UpdateBody } from 'src/api/profileApi/profileApi.types';
 
 interface AppState {
   status: StateStatus;
   isLoggedIn: boolean;
   initialized: boolean;
   user: User | null;
+  meta: { updating: boolean };
 }
 
 const initialState: AppState = {
@@ -17,6 +23,7 @@ const initialState: AppState = {
   isLoggedIn: false,
   initialized: false,
   user: null,
+  meta: { updating: false },
 };
 
 const appSlice = createSlice({
@@ -32,6 +39,25 @@ const appSlice = createSlice({
       state.user = payload.user;
       state.isLoggedIn = true;
     });
+
+    builder.addCase(updateProfileAsync.pending, (state) => {
+      state.meta.updating = true;
+    });
+    builder.addCase(updateProfileAsync.fulfilled, (state, { payload }) => {
+      state.user = payload.user;
+      state.meta.updating = false;
+    });
+    builder.addCase(deletePhotoAsync.fulfilled, (state, { payload }) => {
+      if (state.user === null) return;
+      if (state.user.photos === null) return;
+      state.user.photos = state.user?.photos.filter(
+        (photo) => photo !== payload
+      );
+    });
+    builder.addCase(updateProfileAsync.rejected, (state) => {
+      state.meta.updating = false;
+    });
+
     builder.addCase(initializeAsync.fulfilled, (state) => {
       state.initialized = true;
     });
@@ -97,8 +123,37 @@ export const getUserAsync = createAsyncThunk(
   'app/getUserAsync',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await authApi.getUser();
+      const { data } = await profileApi.getUser();
       return data;
+    } catch (e: any) {
+      console.error(e.message);
+      return rejectWithValue(e.message);
+    }
+  }
+);
+export const updateProfileAsync = createAsyncThunk(
+  'app/updateProfileAsync',
+  async (body: UpdateBody, { rejectWithValue }) => {
+    try {
+      const form = new FormData();
+      for (const [key, value] of Object.entries(body)) {
+        if (value !== undefined || value !== '') form.append(key, value);
+      }
+      const { data } = await profileApi.updateProfile(form);
+      return data;
+    } catch (e: any) {
+      console.error(e.message);
+      return rejectWithValue(e.message);
+    }
+  }
+);
+
+export const deletePhotoAsync = createAsyncThunk(
+  'app/deletePhotoAsync',
+  async (src: string, { rejectWithValue }) => {
+    try {
+      await profileApi.deletePhoto(src);
+      return src;
     } catch (e: any) {
       console.error(e.message);
       return rejectWithValue(e.message);

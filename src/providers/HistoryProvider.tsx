@@ -53,7 +53,7 @@ export const useHistory = (): History => {
   }, [location, list]);
   return {
     goBack: () => {
-      if (key !== 'dialogs') {
+      if (key !== 'root') {
         const tab = tabs.find((tab) => tab.key === key);
         if (tab?.previous === undefined) return;
         navigateTab(tab.previous);

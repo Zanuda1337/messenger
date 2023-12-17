@@ -10,7 +10,7 @@ import React from 'react';
 import RightSide from 'src/layouts/rightSide/RightSide';
 import Search from 'src/features/chat/search/Search';
 import HistoryProvider from 'src/providers/HistoryProvider';
-import Dialogs from 'src/features/tabs/dialogs/Dialogs';
+import Dialogs from 'src/features/tabs/root/Root';
 import Settings from 'src/features/tabs/settings/Settings';
 import GeneralSettings from 'src/features/tabs/generalSettings/GeneralSettings';
 import { Tab } from 'src/providers/TabsProvider';
@@ -72,13 +72,13 @@ export const router = createBrowserRouter(
 
 export const tabs: Tab[] = [
   {
-    key: 'dialogs',
+    key: 'root',
     element: <Dialogs />,
   },
   {
     key: 'settings',
     element: <Settings />,
-    previous: 'dialogs',
+    previous: 'root',
   },
   {
     key: 'general_settings',

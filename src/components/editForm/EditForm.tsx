@@ -11,7 +11,7 @@ interface EditProps {
   user?: undefined;
 }
 
-const EditForm: React.FC<EditProps> = ({  }) => {
+const EditForm: React.FC<EditProps> = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   const handleOpenDialog = (): void => {

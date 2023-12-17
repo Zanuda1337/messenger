@@ -4,6 +4,10 @@ import ListItem from 'src/components/listItem/ListItem';
 import CustomSwitch from 'src/components/customSwitch/CustomSwitch';
 import { useCopyToClipboard } from 'src/hooks';
 import { User as IUser } from 'src/app/app.types';
+import listItemClasses from 'src/components/listItem/ListItem.module.scss';
+import classes from './User.module.scss';
+import SvgSelector from 'src/components/svgSelector/SvgSelector';
+import Typography from 'src/components/typography/Typography';
 
 interface UserProps {
   user: IUser | null;
@@ -27,23 +31,6 @@ const User: React.FC<UserProps> = ({
     <>
       <ProfilePicture
         user={user}
-        images={[
-          {
-            url: 'https://upload.wikimedia.org/wikipedia/ru/9/94/%D0%93%D0%B8%D0%B3%D0%B0%D1%87%D0%B0%D0%B4.jpg',
-          },
-          {
-            url: 'https://i.ytimg.com/vi/Ux5cQbO_ybw/maxresdefault.jpg',
-          },
-          {
-            url: 'https://yt3.googleusercontent.com/BV3BfZ_aFWJXLeePO0KaM5pIYn5rxn0cEcXy8cXtIFKZOJ9fPAutMApUc3aP7rqsu0C8mFxUGw=s900-c-k-c0x00ffffff-no-rj',
-          },
-          {
-            url: 'https://i.pinimg.com/736x/40/71/d6/4071d667fae30cd0e003c165f9dc757e.jpg',
-          },
-          {
-            url: 'https://i.ytimg.com/vi/d0S2jjDgm10/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLCT249JpdUy4Qj5CCGlRs_bTFixTA',
-          },
-        ]}
       />
       <div className={'list'}>
         <ListItem
@@ -66,6 +53,21 @@ const User: React.FC<UserProps> = ({
           }}
           onClick={handleCopy('Username', `@${user?.username}`)}
         />
+        {user?.bio !== '' && (
+          <div className={classes.item}>
+            <div className={listItemClasses.block}>
+              <SvgSelector id={'info'} className={listItemClasses.svg} />
+              <div className={listItemClasses.textContainer}>
+                <Typography color={'tertiary'} size={'s'} weight={600}>
+                  Bio
+                </Typography>
+                <Typography size={'m'} className={classes.bio}>
+                  {user?.bio}
+                </Typography>
+              </div>
+            </div>
+          </div>
+        )}
         {!hideNotifications && (
           <ListItem
             iconId="notifications"

@@ -1,7 +1,7 @@
 .root {
   :global(.MuiFormLabel-root) {
     color: var(--text-secondary);
-    font-family: "Mulish", sans-serif;
+    font-family: 'Mulish', sans-serif;
   }
   :global(.MuiFormLabel-root.Mui-error) {
     color: var(--error);
@@ -9,18 +9,26 @@
   & :global(.MuiInputBase-root) {
     border-radius: 16px;
   }
-  :global(.MuiOutlinedInput-notchedOutline) {
+  :global(.MuiOutlinedInput-notchedOutline),
+  :global(.MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline) {
     border-color: var(--border-primary);
     border-radius: 16px;
-    transition: border-color .2s;
+    transition: border-color 0.2s, filter 0.2s;
   }
-  :global(.Mui-error.MuiInputBase-root .MuiOutlinedInput-notchedOutline) {
+  :global(.MuiInputBase-root.Mui-focused),
+  :global(.MuiInputBase-root.Mui-focused):hover {
+    :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--primary);
+    }
+  }
+  :global(.Mui-error.MuiInputBase-root .MuiOutlinedInput-notchedOutline),
+  :global(.Mui-error.MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline) {
     border-color: var(--error);
   }
 
   :global(.MuiInputBase-root):hover {
     :global(.MuiOutlinedInput-notchedOutline) {
-      border-color: var(--bg-block-3);
+      filter: brightness(1.4);
     }
   }
 
@@ -33,15 +41,25 @@
     }
   }
 
-  :global(.MuiInputBase-root.Mui-focused) {
-    :global(.MuiOutlinedInput-notchedOutline) {
-      border-color: var(--primary);
-    }
-  }
   :global(.Mui-focused.Mui-error) {
     :global(.MuiOutlinedInput-notchedOutline) {
       border-color: var(--error);
     }
+  }
+  :global(.MuiInputBase-colorSuccess),
+  :global(.MuiInputBase-root.MuiInputBase-colorSuccess):hover {
+    :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--success);
+    }
+  }
+  :global(.Mui-focused.MuiInputBase-colorSuccess),
+  :global(.MuiInputBase-root.Mui-focused.MuiInputBase-colorSuccess):hover {
+    :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--success);
+    }
+  }
+  :global(.MuiFormLabel-root.MuiFormLabel-colorSuccess) {
+    color: var(--success);
   }
 }
 

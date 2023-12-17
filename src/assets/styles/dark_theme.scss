@@ -7,7 +7,7 @@ $dark-theme: (
   border: rgb(50, 50, 50),
   border-primary: #4a545c,
   text-primary: #dbe9ec,
-  text-primary-light: #c7d0d4,
+  text-primary-light: #dbe9ec,
   text-secondary: #abbbc9,
   text-secondary-light: #abbbc9,
   text-tertiary: #778592,
@@ -20,4 +20,5 @@ $dark-theme: (
   scrollbar: rgba(64, 71, 78, 0.5),
   bg-snackbar: rgba(5, 5, 5, 0.75),
   error: #ce5151,
+  success: #48a648,
 );

@@ -3,7 +3,6 @@ import { instance } from 'src/api';
 import {
   LoginRequest,
   RegistrationRequest,
-  UserRequest,
 } from 'src/api/authApi/authApi.types';
 
 export const authApi = {
@@ -13,5 +12,4 @@ export const authApi = {
     instance.post('/auth/registration', body),
   login: (body: LoginRequest) => instance.put('/auth/login', body),
   logout: () => instance.put('/auth/logout'),
-  getUser: () => instance.get<UserRequest>('/user'),
 };

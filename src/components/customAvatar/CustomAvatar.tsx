@@ -16,15 +16,18 @@ interface AvatarProps {
   name: string;
   size?: Sizes;
   className?: string;
+  src?: string | null;
 }
 
 const CustomAvatar: React.FC<AvatarProps> = ({
   name,
   className,
   size = 'small',
+  src,
 }) => {
   return (
     <Avatar
+      src={src ?? ''}
       className={clsx(className)}
       sx={{
         bgcolor: stringToColor(name),

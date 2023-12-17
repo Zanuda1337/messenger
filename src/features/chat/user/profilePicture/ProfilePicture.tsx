@@ -6,27 +6,31 @@ import SvgSelector from 'src/components/svgSelector/SvgSelector';
 import clsx from 'clsx';
 import Typography from 'src/components/typography/Typography';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { useDevice, useKeydown } from 'src/hooks';
+import { useDevice, useIsCurrentUser, useKeydown } from 'src/hooks';
 import CustomIconButton from 'src/components/customIconButton/CustomIconButton';
 import CustomAvatar from 'src/components/customAvatar/CustomAvatar';
-import { clamp } from 'src/utils';
+import { clamp, stringToColor } from 'src/utils';
 import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
 import { Vector2 } from 'src/types';
 import { User } from 'src/app/app.types';
+import { useBoundActions } from 'src/app/hooks';
+import CustomDialogue from 'src/components/customDialogue/CustomDialogue';
+import { deletePhotoAsync } from 'src/app/app.slice';
 
 const MAX_IMAGES_ITEMS = 5;
 const ZOOM_STEP = 0.7;
 
-interface PaginationItem extends Image {
+interface PaginationItem {
+  url: string;
   index: number;
 }
 const middleItemIndex = Math.ceil(MAX_IMAGES_ITEMS / 2);
 const generatePagination = (
-  images: Image[],
+  images: string[],
   activeIndex: number
 ): PaginationItem[] => {
   const items = [];
-  const mappedImages = images.map((img, index) => ({ ...img, index }));
+  const mappedImages = images.map((img, index) => ({ url: img, index }));
   if (activeIndex < middleItemIndex) {
     for (let i = 0; i < MAX_IMAGES_ITEMS && i < mappedImages.length; i++) {
       items.push(mappedImages[i]);
@@ -37,8 +41,6 @@ const generatePagination = (
     }
   } else {
     for (let i = 0; i < MAX_IMAGES_ITEMS; i++) {
-      console.log(i);
-      console.log(images.length - MAX_IMAGES_ITEMS + i - 1);
       items.push(mappedImages[images.length - MAX_IMAGES_ITEMS + i]);
     }
   }
@@ -62,17 +64,17 @@ const initialCoords = {
   y: 0,
 };
 
-interface Image {
-  url: string;
-}
-
 interface ProfilePictureProps {
-  images: Image[];
   user: User | null;
 }
 
-const ProfilePicture: React.FC<ProfilePictureProps> = ({ images, user }) => {
-  const { width } = useDevice();
+const ProfilePicture: React.FC<ProfilePictureProps> = ({ user }) => {
+  const boundActions = useBoundActions({ deletePhotoAsync });
+  const [fetching, setFetching] = useState(false);
+  const images = [...(user?.photos ?? [])].reverse();
+  const { isMobileLayout, width } = useDevice();
+  const isCurrentUser = useIsCurrentUser(user?._id);
+  const [deleteDialog, setDeleteDialog] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeModalIndex, setActiveModalIndex] = useState(0);
   const [zoomFactor, setZoomFactor] = useState(1);
@@ -84,12 +86,12 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images, user }) => {
   );
   const [open, setOpen] = useState(false);
   const [direction, setDirection] = useState(1);
-  const currentImage = images[activeIndex];
+  const currentImage = images?.[activeIndex];
   const handleChangePage = (index: number) => () => {
     setActiveIndex(index);
     setDirection(index >= activeIndex ? -1 : 1);
   };
-  const paginationItems = generatePagination(images, activeIndex);
+  const paginationItems = generatePagination(images ?? [], activeIndex);
 
   useEffect(() => {
     const curr = imageContainerRef.current;
@@ -124,11 +126,13 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images, user }) => {
   };
 
   const handleModalPrev = (): void => {
+    if (deleteDialog) return;
     if (activeModalIndex <= 0 || zoomFactor !== 1) return;
     setActiveModalIndex(activeModalIndex - 1);
     setDirection(-1);
   };
   const handleModalNext = (): void => {
+    if (deleteDialog) return;
     if (activeModalIndex >= images.length - 1 || zoomFactor !== 1) return;
     setActiveModalIndex(activeModalIndex + 1);
     setDirection(1);
@@ -155,32 +159,90 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images, user }) => {
     }
   };
 
+  const handleOpenDelete = (): void => {
+    setDeleteDialog(true);
+  };
+  const handleCloseDelete = (): void => {
+    setDeleteDialog(false);
+  };
+
+  const handleDeletePhoto = async (): Promise<void> => {
+    setFetching(true);
+    const imageToDelete = currentImage;
+    setActiveModalIndex(0);
+    setActiveIndex(0);
+    await boundActions.deletePhotoAsync(imageToDelete).unwrap();
+    setFetching(false);
+    handleCloseDelete();
+  };
+
+  useEffect(() => {
+    if (images.length > 0) return;
+    handleClose();
+  }, [images]);
+
   useKeydown('ArrowLeft', handleModalPrev);
   useKeydown('ArrowRight', handleModalNext);
 
   const actions = useMemo(
-    () => [
-      {
-        icon: 'zoomOut',
-        hideOnMobile: true,
-        onClick: handleZoomOut,
-      },
-      {
-        icon: 'zoomIn',
-        hideOnMobile: true,
-        onClick: handleZoomIn,
-      },
-      {
-        icon: 'close',
-        hideOnMobile: false,
-        onClick: handleClose,
-      },
-    ],
+    () =>
+      isCurrentUser
+        ? [
+            {
+              icon: 'zoomOut',
+              hideOnMobile: true,
+              onClick: handleZoomOut,
+            },
+            {
+              icon: 'zoomIn',
+              hideOnMobile: true,
+              onClick: handleZoomIn,
+            },
+            {
+              icon: 'delete',
+              hideOnMobile: false,
+              onClick: handleOpenDelete,
+            },
+            {
+              icon: 'close',
+              hideOnMobile: false,
+              onClick: handleClose,
+            },
+          ]
+        : [
+            {
+              icon: 'zoomOut',
+              hideOnMobile: true,
+              onClick: handleZoomOut,
+            },
+            {
+              icon: 'zoomIn',
+              hideOnMobile: true,
+              onClick: handleZoomIn,
+            },
+            {
+              icon: 'close',
+              hideOnMobile: false,
+              onClick: handleClose,
+            },
+          ],
     [handleZoomIn, handleZoomOut]
   );
 
   return (
     <div className={classes.profileContainer} ref={imageContainerRef}>
+      <CustomDialogue
+        content={''}
+        slotProps={{
+          title: { children: 'Are you sure?' },
+          submit: { color: 'error', fetching, children: 'delete photo' },
+        }}
+        open={deleteDialog}
+        onClose={handleCloseDelete}
+        onSubmit={() => {
+          void handleDeletePhoto();
+        }}
+      />
       <TransitionGroup
         className={classes.picture}
         childFactory={(child) =>
@@ -189,16 +251,27 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images, user }) => {
               transition: direction === 1,
               'transition-to-right': direction === -1,
             }),
-            timeout: 300,
+            timeout: 30000,
           })
         }
       >
         <CSSTransition
-          key={currentImage.url}
-          timeout={300}
+          key={currentImage}
+          timeout={30000}
           classNames={'transition'}
         >
-          <img src={currentImage.url} alt="" onClick={handleOpen} />
+          {images.length > 0 ? (
+            <img src={currentImage} alt="" onClick={handleOpen} />
+          ) : (
+            <div
+              className={classes.placeholderContainer}
+              style={{
+                backgroundColor: stringToColor(clsx(user?.name, user?.surname)),
+              }}
+            >
+              <p>{`${user?.name[0]}${clsx(user?.surname?.[0])}`}</p>
+            </div>
+          )}
         </CSSTransition>
       </TransitionGroup>
       <CSSTransition in={open} classNames={'picture'} timeout={400}>
@@ -209,7 +282,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images, user }) => {
           slotProps={{
             backdrop: {
               sx: {
-                background: width < 850 ? 'black' : 'rgba(0,0,0,0.8)',
+                background: isMobileLayout ? 'black' : 'rgba(0,0,0,0.8)',
               },
               timeout: 400,
             },
@@ -231,7 +304,9 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images, user }) => {
                 </div>
                 <div className={classes.actions}>
                   {actions
-                    .filter((action) => !(action.hideOnMobile && width < 850))
+                    .filter(
+                      (action) => !(action.hideOnMobile && isMobileLayout)
+                    )
                     .map((action) => (
                       <CustomIconButton
                         key={action.icon}
@@ -300,15 +375,19 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images, user }) => {
                           }}
                           onStart={handleStartDrag}
                         >
-                          <img
-                            draggable={false}
-                            src={images[activeModalIndex].url}
-                            alt=""
-                            style={{
-                              cursor: zoomFactor > 1 ? 'move' : 'default',
-                              transition: zoomFactor > 1 ? 'none' : undefined,
-                            }}
-                          />
+                          {images.length > 0 ? (
+                            <img
+                              draggable={false}
+                              src={images[activeModalIndex]}
+                              alt=""
+                              style={{
+                                cursor: zoomFactor > 1 ? 'move' : 'default',
+                                transition: zoomFactor > 1 ? 'none' : undefined,
+                              }}
+                            />
+                          ) : (
+                            <div />
+                          )}
                         </Draggable>
                       </div>
                     </div>
@@ -332,15 +411,16 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images, user }) => {
                 )}
               />
             )}
-          {paginationItems.map((image) => (
-            <div
-              key={image.index}
-              className={clsx(classes.carouselItem, {
-                [classes.active]: activeIndex === image.index,
-              })}
-              onClick={handleChangePage(image.index)}
-            />
-          ))}
+          {images.length > 1 &&
+            paginationItems.map((image) => (
+              <div
+                key={image.index}
+                className={clsx(classes.carouselItem, {
+                  [classes.active]: activeIndex === image.index,
+                })}
+                onClick={handleChangePage(image.index)}
+              />
+            ))}
           {images.length > MAX_IMAGES_ITEMS &&
             activeIndex < images.length - middleItemIndex && (
               <div
@@ -390,6 +470,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ images, user }) => {
             Last seen 27 minutes ago
           </Typography>
         </div>
+        <div className={classes.gradient} />
       </div>
     </div>
   );

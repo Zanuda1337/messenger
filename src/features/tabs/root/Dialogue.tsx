@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@mui/material';
 import CustomAvatar from 'src/components/customAvatar/CustomAvatar';
 import { format } from 'date-fns';
-import classes from './Dialogs.module.scss';
+import classes from './Root.module.scss';
 import Typography from 'src/components/typography/Typography';
 import clsx from 'clsx';
 import SvgSelector from 'src/components/svgSelector/SvgSelector';

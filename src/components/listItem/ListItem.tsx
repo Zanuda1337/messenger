@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { Button } from '@mui/material';
 import styles from './ListItem.module.scss';
 import SvgSelector, {
@@ -17,15 +17,16 @@ interface ListItemProps {
     titleProps?: Omit<TypographyProps, 'children'>;
     subtitleProps?: Omit<TypographyProps, 'children'>;
   };
-  subtitle?: string;
-  endAdornment?: JSX.Element;
-  className?: string;
   slots?: {
     icon: JSX.Element;
   };
+  subtitle?: string;
+  endAdornment?: JSX.Element;
+  className?: string;
   classes?: { root?: string; block?: string };
   disabled?: boolean;
   disableRipple?: boolean;
+  style?: CSSProperties;
   onClick?: () => void;
 }
 
@@ -41,6 +42,7 @@ const ListItem: React.FC<ListItemProps> = ({
   onClick,
   classes,
   disableRipple,
+  style,
 }) => (
   <Button
     classes={{ root: clsx(styles.item, className, classes?.root) }}
@@ -48,6 +50,7 @@ const ListItem: React.FC<ListItemProps> = ({
     disabled={disabled}
     disableFocusRipple
     disableRipple={disableRipple}
+    style={style}
   >
     <div className={clsx(styles.block, classes?.block)}>
       {slots?.icon ?? (

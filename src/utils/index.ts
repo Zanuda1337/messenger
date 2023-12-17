@@ -59,3 +59,21 @@ export const createReducersHandler = <T extends StateBase>(
     state.status = 'idle';
   });
 };
+
+export const dataUrlToFile = (
+  dataUrl: string,
+  filename: string,
+  type = 'image/jpeg'
+): File => {
+  const blobBin = atob(dataUrl.split(',')[1]);
+  const array = [];
+  for (let i = 0; i < blobBin.length; i++) {
+    array.push(blobBin.charCodeAt(i));
+  }
+  const blob = new Blob([new Uint8Array(array)], {
+    type,
+  });
+  return new File([blob], filename, {
+    type,
+  });
+};

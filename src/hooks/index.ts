@@ -3,6 +3,7 @@ import { useSnackbar } from 'notistack';
 import { TabsContext } from 'src/providers/TabsProvider';
 import { tabs } from 'src/router/Router';
 import { Device, Theme } from 'src/types';
+import { useAppSelector } from 'src/app/hooks';
 
 export const useDevice = (): Device => {
   const [windowSize, setWindowSize] = useState<Device>({
@@ -15,7 +16,7 @@ export const useDevice = (): Device => {
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
-        isMobileLayout: window.innerWidth > 850,
+        isMobileLayout: window.innerWidth <= 850,
       });
     };
     window.addEventListener('resize', handleResize);
@@ -118,4 +119,10 @@ export const useTheme = (): {
     };
   }, [animation]);
   return { theme, toggleTheme: handleToggleTheme };
+};
+
+export const useIsCurrentUser = (id: string | undefined): boolean => {
+  if (id === undefined) return false;
+  const user = useAppSelector((state) => state.app.user);
+  return user?._id === id;
 };
