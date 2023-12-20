@@ -21,25 +21,15 @@
   margin: 0 auto;
   width: 100%;
   padding: 0 $indent;
-  transition: transform 0.2s ease-in-out 0.3s, padding 0.3s;
+  transition:
+    transform 0.2s ease-in-out 0.3s,
+    padding 0.3s;
   @media (max-width: 850px) {
     max-width: 710px + $indent_mobile * 2;
     padding: 0 $indent_mobile;
   }
   &.mobile {
     padding: 0;
-  }
-  &.selectMode {
-    transform: translateX(40px);
-    .own {
-      margin-right: 40px;
-    }
-    cursor: pointer;
-    & * {
-      -webkit-user-select: none; /* Safari */
-      -ms-user-select: none; /* IE 10 and IE 11 */
-      user-select: none; /* Standard syntax */
-    }
   }
 }
 
@@ -122,100 +112,27 @@
     line-height: 0;
   }
 }
+.selectMode {
+  transform: translateX(40px);
+  cursor: pointer;
+  & .own {
+    margin-right: 40px;
+  }
+  & * {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+  }
+}
 
 .icon {
   fill: var(--text-primary);
   height: 100%;
 }
 
-.block {
-  @include column;
-  gap: 6px;
-  padding: 6px 0;
-  width: 100%;
-}
-
-.blockWrapper {
-  display: flex;
-  gap: 10px;
-}
-
-.avatarContainer {
-  @include column;
-  padding: 6px 0;
-}
-
-.avatar {
-  position: sticky !important;
-  bottom: 5px;
-}
-
 .badge {
   @include center;
   padding: 0 5px;
-}
-.header {
-  z-index: 1;
-  box-shadow: 10px 0 5px 4px var(--shadow);
-  gap: 15px;
-}
-
-.chatLabel {
-  display: flex;
-  gap: 10px;
-}
-
-.arrow {
-  padding-right: 10px;
-}
-
-.link {
-  @include space-between;
-  width: 100%;
-}
-
-.textContainer {
-  @include column;
-  @include space-between;
-  padding: 2px 0;
-}
-
-.actionIcon {
-  fill: var(--text-secondary);
-  width: 28px;
-}
-
-.enter {
-  transform: scale(0.5) translateX(-250px);
-  & > div {
-    transform: translateY(35px);
-  }
-}
-
-.enterActive {
-  transform: scale(1) translateX(0);
-  transition: 0.2s;
-  & > div {
-    transform: translateY(0);
-    transition: 0.2s ease-in;
-  }
-}
-
-.exit {
-  transform: scale(1) translateX(0);
-  transition: 0.2s;
-  & > div {
-    transform: translateY(0);
-    transition: 0.2s ease-in;
-  }
-  max-width: 100%;
-}
-
-.exitActive {
-  transform: scale(0.5) translateX(-20px);
-  & > div {
-    transform: translateY(-10px);
-  }
 }
 
 :global(.MuiPaper-root) .dialogButtons {
@@ -268,23 +185,4 @@
       transition: inherit;
     }
   }
-}
-
-.tightEnter {
-  transform: translateY(100px);
-}
-.tightEnterActive {
-  transform: translateY(0);
-  transition: .3s;
-}
-.tightExit {
-  transform: translateY(0);
-  transition: .3s;
-}
-.tightExitActive {
-  transform: translateY(100px);
-}
-
-.tight {
-  padding: 0 $indent * 4;
 }

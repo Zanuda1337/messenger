@@ -6,8 +6,8 @@ import { format } from 'date-fns';
 import { stringToColor } from 'src/utils';
 import Badge from 'src/components/badge/Badge';
 import SvgSelector from 'src/components/svgSelector/SvgSelector';
+import { User } from 'src/slices/app/app.types';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface MessageProps {
   text?: string;
   date: Date;
@@ -16,11 +16,7 @@ interface MessageProps {
   last: boolean;
   sent: boolean;
   read: boolean;
-  user: {
-    id: number;
-    firstName: string;
-    lastName?: string;
-  };
+  user: User;
   selectMode: boolean;
   isSelected: boolean;
   isActive: boolean;
@@ -75,11 +71,9 @@ const Message: React.FC<MessageProps> = ({
           {showName && (
             <Typography
               weight={600}
-              style={{ color: stringToColor(user.firstName) }}
+              style={{ color: stringToColor(clsx(user.name, user.surname)) }}
             >
-              {clsx(user.firstName, {
-                [` ${user.lastName}`]: user.lastName !== undefined,
-              })}
+              {clsx(user.name, user.surname)}
             </Typography>
           )}
           <div className={classes.content}>

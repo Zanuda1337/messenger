@@ -12,10 +12,11 @@ import CustomAvatar from 'src/components/customAvatar/CustomAvatar';
 import { clamp, stringToColor } from 'src/utils';
 import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
 import { Vector2 } from 'src/types';
-import { User } from 'src/app/app.types';
-import { useBoundActions } from 'src/app/hooks';
+import { User } from 'src/slices/app/app.types';
 import CustomDialogue from 'src/components/customDialogue/CustomDialogue';
-import { deletePhotoAsync } from 'src/app/app.slice';
+import { useDeletePhotoMutation } from 'src/api/profileApi/profileApi';
+import { useBoundActions } from 'src/app/hooks';
+import { appActions } from 'src/slices/app/app.slice';
 
 const MAX_IMAGES_ITEMS = 5;
 const ZOOM_STEP = 0.7;
@@ -69,11 +70,11 @@ interface ProfilePictureProps {
 }
 
 const ProfilePicture: React.FC<ProfilePictureProps> = ({ user }) => {
-  const boundActions = useBoundActions({ deletePhotoAsync });
-  const [fetching, setFetching] = useState(false);
+  const [deletePhoto, deletePhotoMeta] = useDeletePhotoMutation();
+  const boundActions = useBoundActions(appActions);
   const images = [...(user?.photos ?? [])].reverse();
   const { isMobileLayout, width } = useDevice();
-  const isCurrentUser = useIsCurrentUser(user?._id);
+  const isCurrentUser = useIsCurrentUser();
   const [deleteDialog, setDeleteDialog] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeModalIndex, setActiveModalIndex] = useState(0);
@@ -167,12 +168,19 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ user }) => {
   };
 
   const handleDeletePhoto = async (): Promise<void> => {
-    setFetching(true);
     const imageToDelete = currentImage;
     setActiveModalIndex(0);
     setActiveIndex(0);
-    await boundActions.deletePhotoAsync(imageToDelete).unwrap();
-    setFetching(false);
+    await deletePhoto(imageToDelete).unwrap();
+    if (user !== null) {
+      boundActions.setUser({
+        ...user,
+        photos:
+          user.photos !== null
+            ? user.photos.filter((photo) => photo !== imageToDelete)
+            : null,
+      });
+    }
     handleCloseDelete();
   };
 
@@ -186,7 +194,7 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ user }) => {
 
   const actions = useMemo(
     () =>
-      isCurrentUser
+      isCurrentUser(user?._id)
         ? [
             {
               icon: 'zoomOut',
@@ -235,7 +243,11 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ user }) => {
         content={''}
         slotProps={{
           title: { children: 'Are you sure?' },
-          submit: { color: 'error', fetching, children: 'delete photo' },
+          submit: {
+            color: 'error',
+            fetching: deletePhotoMeta.isLoading,
+            children: 'delete photo',
+          },
         }}
         open={deleteDialog}
         onClose={handleCloseDelete}
@@ -243,37 +255,39 @@ const ProfilePicture: React.FC<ProfilePictureProps> = ({ user }) => {
           void handleDeletePhoto();
         }}
       />
-      <TransitionGroup
-        className={classes.picture}
-        childFactory={(child) =>
-          React.cloneElement(child, {
-            classNames: clsx(classes.picture, {
-              transition: direction === 1,
-              'transition-to-right': direction === -1,
-            }),
-            timeout: 30000,
-          })
-        }
-      >
-        <CSSTransition
-          key={currentImage}
-          timeout={30000}
-          classNames={'transition'}
+      {images.length > 0 ? (
+        <TransitionGroup
+          className={classes.picture}
+          childFactory={(child) =>
+            React.cloneElement(child, {
+              classNames: clsx(classes.picture, {
+                transition: direction === 1,
+                'transition-to-right': direction === -1,
+              }),
+              timeout: 30000,
+            })
+          }
         >
-          {images.length > 0 ? (
+          <CSSTransition
+            key={currentImage}
+            timeout={30000}
+            classNames={'transition'}
+          >
             <img src={currentImage} alt="" onClick={handleOpen} />
-          ) : (
-            <div
-              className={classes.placeholderContainer}
-              style={{
-                backgroundColor: stringToColor(clsx(user?.name, user?.surname)),
-              }}
-            >
-              <p>{`${user?.name[0]}${clsx(user?.surname?.[0])}`}</p>
-            </div>
-          )}
-        </CSSTransition>
-      </TransitionGroup>
+          </CSSTransition>
+        </TransitionGroup>
+      ) : (
+        <div className={classes.picture}>
+          <div
+            className={classes.placeholderContainer}
+            style={{
+              backgroundColor: stringToColor(clsx(user?.name, user?.surname)),
+            }}
+          >
+            <p>{`${user?.name[0]}${clsx(user?.surname?.[0])}`}</p>
+          </div>
+        </div>
+      )}
       <CSSTransition in={open} classNames={'picture'} timeout={400}>
         <Modal
           open={open}

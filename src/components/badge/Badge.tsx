@@ -10,32 +10,30 @@ interface BadgeProps {
   color?: 'primary' | 'pale';
 }
 
-const Badge: React.FC<BadgeProps> = ({
-  variant,
-  value,
-  className,
-  color = 'primary',
-}) => {
-  return (
-    <div>
-      <div
-        className={clsx(
-          classes.circle,
-          {
-            [classes.standard]: variant === 'standard',
-          },
-          { [classes.pale]: color === 'pale' },
-          className
-        )}
-      >
-        <Typography size={'xs'} color={'primary-light'}>
-          {variant === 'standard' && value !== undefined
-            ? value.toString()
-            : ''}
-        </Typography>
+// eslint-disable-next-line react/display-name
+const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
+  ({ variant, value, className, color = 'primary' }, ref) => {
+    return (
+      <div ref={ref}>
+        <div
+          className={clsx(
+            classes.circle,
+            {
+              [classes.standard]: variant === 'standard',
+            },
+            { [classes.pale]: color === 'pale' },
+            className
+          )}
+        >
+          <Typography size={'xs'} color={'primary-light'}>
+            {variant === 'standard' && value !== undefined
+              ? value.toString()
+              : ''}
+          </Typography>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
 
 export default Badge;

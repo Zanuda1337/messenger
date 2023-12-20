@@ -11,12 +11,14 @@ import CustomIconButton from 'src/components/customIconButton/CustomIconButton';
 import SvgSelector from 'src/components/svgSelector/SvgSelector';
 import CustomMenu from 'src/components/customMenu/CustomMenu';
 import CustomDialogue from 'src/components/customDialogue/CustomDialogue';
-import { logoutAsync } from 'src/app/app.slice';
+import { appActions } from 'src/slices/app/app.slice';
+import { useLogoutMutation } from 'src/api/authApi/authApi';
 
 const Settings: React.FC = () => {
   const user = useAppSelector((state) => state.app.user);
   const appStatus = useAppSelector((state) => state.app.status);
-  const boundActions = useBoundActions({ logoutAsync });
+  const boundActions = useBoundActions(appActions);
+  const [logout] = useLogoutMutation();
 
   const [logoutDialogOpen, setLogoutDialogOpen] = useState(false);
   const { navigateTab } = useTabs();
@@ -27,7 +29,8 @@ const Settings: React.FC = () => {
     setLogoutDialogOpen(true);
   };
   const handleLogout = async (): Promise<void> => {
-    await boundActions.logoutAsync();
+    await logout().unwrap();
+    boundActions.logout();
     handleCloseLogoutDialog();
   };
 

@@ -10,7 +10,7 @@ export type Colors =
   | 'secondary'
   | 'secondary-light'
   | 'tertiary'
-  | 'interactive-primary'
+  | 'interactive_primary'
   | 'primary-light'
   | 'error';
 

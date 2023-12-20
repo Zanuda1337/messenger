@@ -121,8 +121,7 @@ export const useTheme = (): {
   return { theme, toggleTheme: handleToggleTheme };
 };
 
-export const useIsCurrentUser = (id: string | undefined): boolean => {
-  if (id === undefined) return false;
+export const useIsCurrentUser = (): (id: string | undefined) => boolean => {
   const user = useAppSelector((state) => state.app.user);
-  return user?._id === id;
+  return (id: string | undefined) => user?._id === id;
 };

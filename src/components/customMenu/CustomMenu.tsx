@@ -46,8 +46,9 @@ const CustomMenu: React.FC<CustomMenuProps> = ({
 
   useEffect(() => {
     if (open === undefined) return;
+    if (open === isOpen) return;
     setIsOpen(open);
-  }, []);
+  }, [isOpen, open]);
 
   return (
     <CustomPopper

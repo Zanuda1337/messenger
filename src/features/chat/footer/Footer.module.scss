@@ -1,0 +1,21 @@
+@import 'src/assets/styles/variables';
+
+.tightEnter {
+  transform: translateY(100px);
+}
+.tightEnterActive {
+  transform: translateY(0);
+  transition: .3s;
+}
+.tightExit {
+  transform: translateY(0);
+  transition: .3s;
+}
+.tightExitActive {
+  transform: translateY(100px);
+}
+
+.tight {
+  padding: 0 $indent * 4;
+}
+

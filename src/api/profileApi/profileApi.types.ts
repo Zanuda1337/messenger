@@ -1,4 +1,4 @@
-import { User } from 'src/app/app.types';
+import { User } from 'src/slices/app/app.types';
 
 export interface UserResponse {
   user: User;

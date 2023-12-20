@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './Root.module.scss';
 import Logo from 'src/assets/images/logo.png';
 import Typography from 'src/components/typography/Typography';
@@ -12,13 +12,20 @@ import CustomDialogue from 'src/components/customDialogue/CustomDialogue';
 import CustomDrawer from 'src/components/customDrawer/CustomDrawer';
 import Swipeable from 'src/components/swipeable/Swipeable';
 import { useAppSelector, useBoundActions } from 'src/app/hooks';
-import { logoutAsync } from 'src/app/app.slice';
+import { appActions } from 'src/slices/app/app.slice';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
-import Search from 'src/features/chat/search/Search';
+import Search from 'src/features/tabs/root/search/Search';
+import Dialogs from 'src/features/tabs/root/dialogs/Dialogs';
+import { fetchDialoguesAsync } from 'src/slices/dialogs/dialogs.slice';
+import { useLogoutMutation } from 'src/api/authApi/authApi';
 
-const Dialogs: React.FC = () => {
-  const boundActions = useBoundActions({ logoutAsync });
-  const appStatus = useAppSelector((state) => state.app.status);
+const Root: React.FC = () => {
+  const boundActions = useBoundActions({
+    fetchDialoguesAsync,
+    ...appActions,
+  });
+  const [logout, logoutMeta] = useLogoutMutation();
+  const dialogues = useAppSelector((state) => state.dialogsReducer.dialogues);
   const { isMobileLayout } = useDevice();
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,7 +41,8 @@ const Dialogs: React.FC = () => {
     setLogoutDialogOpen(false);
   };
   const handleLogout = async (): Promise<void> => {
-    await boundActions.logoutAsync();
+    await logout().unwrap();
+    boundActions.logout();
     handleCloseLogoutDialog();
   };
 
@@ -44,6 +52,10 @@ const Dialogs: React.FC = () => {
   const handleMenuClose = (): void => {
     setMenuOpen(false);
   };
+
+  useEffect(() => {
+    void boundActions.fetchDialoguesAsync();
+  }, []);
 
   const menuOptions = [
     {
@@ -123,7 +135,7 @@ const Dialogs: React.FC = () => {
           submit: {
             color: 'error',
             children: 'log out',
-            fetching: appStatus === 'loading',
+            fetching: logoutMeta.isLoading,
           },
         }}
         onSubmit={() => {
@@ -147,8 +159,15 @@ const Dialogs: React.FC = () => {
             offset={{ top: 20, left: -10 }}
             open={menuOpen}
             onClose={handleMenuClose}
-            onOpen={handleMenuOpen}
+            onOpen={() => {
+              if (focused) {
+                setFocused(false);
+                return;
+              }
+              handleMenuOpen();
+            }}
             options={menuOptions}
+            mode={'click'}
           >
             <CustomIconButton>
               <AnimatedIcon icon={focused ? 'arrow' : 'burger'} />
@@ -156,7 +175,15 @@ const Dialogs: React.FC = () => {
           </CustomMenu>
         ) : (
           <>
-            <CustomIconButton onClick={handleMenuOpen}>
+            <CustomIconButton
+              onClick={() => {
+                if (focused) {
+                  setFocused(false);
+                  return;
+                }
+                handleMenuOpen();
+              }}
+            >
               <AnimatedIcon icon={focused ? 'arrow' : 'burger'} />
             </CustomIconButton>
             <Swipeable
@@ -179,7 +206,6 @@ const Dialogs: React.FC = () => {
               openPosition={{ x: 0, y: 0 }}
             >
               <CustomDrawer
-                // style={{ transform: `translateX(${offset}px)` }}
                 open={menuOpen}
                 onClose={handleMenuClose}
                 options={drawerOptions}
@@ -191,9 +217,6 @@ const Dialogs: React.FC = () => {
           </>
         )}
         <SearchField
-          onBlur={() => {
-            setFocused(false);
-          }}
           onFocus={() => {
             setFocused(true);
           }}
@@ -202,7 +225,15 @@ const Dialogs: React.FC = () => {
       <div className={classes.container}>
         <SwitchTransition>
           <CSSTransition timeout={150} key={`${focused}`} classNames={'zoom'}>
-            <div className={'zoom'}>{!focused ? <Dialogs /> : <Search />}</div>
+            <div className={'zoom'}>
+              {!focused ? (
+                <Dialogs
+                  dialogues={dialogues.filter((dialogue) => dialogue.createdAt)}
+                />
+              ) : (
+                <Search />
+              )}
+            </div>
           </CSSTransition>
         </SwitchTransition>
       </div>
@@ -210,4 +241,4 @@ const Dialogs: React.FC = () => {
   );
 };
 
-export default React.memo(Dialogs);
+export default React.memo(Root);

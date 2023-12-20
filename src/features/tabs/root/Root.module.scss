@@ -1,6 +1,7 @@
 @import '../../../assets/styles/mixins';
 @import '../../../assets/styles/variables';
-
+$wrapperGap: 10px;
+$avatarWidth: 48px;
 .wrapper {
   @include column;
   align-items: self-start;
@@ -27,7 +28,7 @@
     padding: 10px $indent_mobile !important;
   }
   border-radius: 0 !important;
-  gap: 10px;
+  gap: $wrapperGap;
   transition: 0s !important;
 
   & :global(.MuiTouchRipple-child) {
@@ -49,25 +50,26 @@
 }
 
 .cut {
-  max-width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .text {
   display: flex;
   width: 100%;
   gap: 3px;
-  max-width: calc(25vw - #{$indent} * 2 - 48px - 45px);
-  @media (max-width: 1250px) {
-    max-width: calc(33.333vw - #{$indent} * 2 - 48px - 45px);
-  }
-  @media (max-width: 950px) {
-    max-width: calc(320px - #{$indent} * 2 - 48px - 45px);
-  }
+  max-width: calc(
+    var(--containerWidth) - #{$indent} * 2 - #{$avatarWidth} - var(--badgeWidth) -
+      #{$wrapperGap}
+  );
   @media (max-width: 850px) {
-    max-width: calc(100vw - #{$indent_mobile} * 2 - 48px - 45px);
+    max-width: calc(
+      var(--containerWidth) - #{$indent_mobile} * 2 - #{$avatarWidth} - var(
+          --badgeWidth
+        ) - #{$wrapperGap}
+    );
   }
 }
 
@@ -126,4 +128,15 @@
   z-index: 1000;
   //transition: .1s;
   pointer-events: none;
+}
+
+.wrapper {
+  width: 100%;
+  a{
+    width: 100%;
+  }
+}
+
+.title {
+  padding: $indent $indent $indent * 0.3;
 }

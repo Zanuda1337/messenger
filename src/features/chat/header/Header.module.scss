@@ -1,0 +1,34 @@
+@import 'src/assets/styles/mixins';
+@import 'src/assets/styles/variables';
+
+.header {
+  z-index: 1;
+  box-shadow: 10px 0 5px 4px var(--shadow);
+  gap: 15px;
+}
+
+.chatLabel {
+  display: flex;
+  gap: 10px;
+}
+
+.arrow {
+  padding-right: 10px;
+}
+
+.link {
+  @include space-between;
+  width: 100%;
+}
+
+.textContainer {
+  @include column;
+  @include space-between;
+  padding: 2px 0;
+}
+
+
+.actionIcon {
+  fill: var(--text-secondary);
+  width: 28px;
+}

@@ -6,38 +6,45 @@ import ProfileEditForm, {
 } from 'src/components/forms/profileEditForm/ProfileEditForm';
 import { useAppSelector, useBoundActions } from 'src/app/hooks';
 import Scroll from 'src/components/scroll/Scroll';
-import { updateProfileAsync } from 'src/app/app.slice';
-import { profileApi } from 'src/api/profileApi/profileApi';
-import { dataUrlToFile } from 'src/utils';
+import { appActions } from 'src/slices/app/app.slice';
+import {
+  useCheckUsernameMutation,
+  useUpdateProfileMutation,
+} from 'src/api/profileApi/profileApi';
 
 const UserEdit: React.FC = () => {
   const user = useAppSelector((state) => state.app.user);
   const meta = useAppSelector((state) => state.app.meta);
-  const boundActions = useBoundActions({ updateProfileAsync });
+  const boundActions = useBoundActions(appActions);
+  const [updateProfile] = useUpdateProfileMutation();
+  const [checkUsername, checkUsernameMeta] = useCheckUsernameMutation();
 
   const [isTaken, setTaken] = useState(false);
-  const [checking, setChecking] = useState(false);
 
-  const handleSubmit = (
+  const handleSubmit = async (
     data: ProfileFields,
-    originalFilename: string
-  ): void => {
+    file: File | undefined
+  ): Promise<void> => {
     const { photo, ...body } = data;
-    void boundActions.updateProfileAsync({
+    if (user !== null) {
+      boundActions.setUser({
+        ...user,
+        ...body,
+        photos:
+          photo !== undefined ? [...(user.photos ?? []), photo] : user.photos,
+      });
+    }
+    const { user: newUser } = await updateProfile({
       ...body,
-      photo:
-        photo !== undefined
-          ? dataUrlToFile(photo, originalFilename)
-          : undefined,
-    });
+      photo: file,
+    }).unwrap();
+    boundActions.setUser(newUser);
   };
 
   const handleCheck = async (username: string): Promise<void> => {
-    console.log(username);
-    setChecking(true);
-    const { data } = await profileApi.checkUsername(username);
-    setChecking(false);
-    setTaken(data.isTaken);
+    if (username.length <= 5) return;
+    const { isTaken } = await checkUsername(username).unwrap();
+    setTaken(isTaken);
   };
 
   return (
@@ -54,13 +61,15 @@ const UserEdit: React.FC = () => {
             surname: user?.surname,
             username: user?.username ?? '',
           }}
-          onSubmit={handleSubmit}
+          onSubmit={(data, originalFilename) => {
+            void handleSubmit(data, originalFilename);
+          }}
           fetching={meta.updating}
           onChangeUsername={(username) => {
             void handleCheck(username);
           }}
           usernameAvailable={!isTaken}
-          usernameFetching={checking}
+          usernameFetching={checkUsernameMeta.isLoading}
         />
       </Scroll>
     </div>

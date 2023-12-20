@@ -9,24 +9,23 @@ import RegistrationForm, {
   RegistrationFields,
 } from 'src/features/auth/RegistrationForm';
 import EmailForm, { EmailFields } from 'src/features/auth/EmailForm';
-import { useNavigate } from 'react-router-dom';
 import LoginForm, { LoginFields } from 'src/features/auth/LoginForm';
-import { useAppSelector, useBoundActions } from 'src/app/hooks';
+import { useBoundActions } from 'src/app/hooks';
+import { appActions } from 'src/slices/app/app.slice';
 import {
-  registrationAsync,
-  checkEmailAsync,
-  loginAsync,
-} from 'src/app/app.slice';
+  useCheckEmailMutation,
+  useLoginMutation,
+  useRegistrationMutation,
+} from 'src/api/authApi/authApi';
+import { useGetUserMutation } from 'src/api/profileApi/profileApi';
 
 const Auth: React.FC = () => {
-  const boundActions = useBoundActions({
-    registrationAsync,
-    checkEmailAsync,
-    loginAsync,
-  });
-  const status = useAppSelector((state) => state.app.status);
+  const boundActions = useBoundActions(appActions);
+  const [checkEmail, checkEmailMeta] = useCheckEmailMutation();
+  const [login, loginMeta] = useLoginMutation();
+  const [registration, registrationMeta] = useRegistrationMutation();
+  const [getUser, getUserMeta] = useGetUserMutation();
 
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [authType, setAuthType] = useState<'email' | 'login' | 'registration'>(
     'email'
@@ -41,25 +40,29 @@ const Auth: React.FC = () => {
 
   const handleSubmitEmail = async (data: EmailFields): Promise<void> => {
     setEmail(data.email);
-    const {
-      data: { isExist },
-    } = await boundActions.checkEmailAsync(data.email).unwrap();
-    setAuthType((isExist as boolean) ? 'login' : 'registration');
+    const { isExist } = await checkEmail(data.email).unwrap();
+    // const {
+    //   data: { isExist },
+    // } = await boundActions.checkEmailAsync(data.email).unwrap();
+    setAuthType(isExist ? 'login' : 'registration');
   };
   const handleRegistration = async (
     data: RegistrationFields
   ): Promise<void> => {
-    await boundActions.registrationAsync(data);
-    navigate('/');
+    await registration(data).unwrap();
+    const { user } = await getUser().unwrap();
+    boundActions.setUser(user);
   };
-  const handleLogin = (data: LoginFields): void => {
-    void boundActions.loginAsync(data);
+  const handleLogin = async (data: LoginFields): Promise<void> => {
+    await login(data).unwrap();
+    const { user } = await getUser().unwrap();
+    boundActions.setUser(user);
   };
 
   const forms = {
     email: (
       <EmailForm
-        fetching={status === 'loading'}
+        fetching={checkEmailMeta.isLoading}
         initialValues={{ email }}
         onSubmit={(data) => {
           void handleSubmitEmail(data);
@@ -68,7 +71,7 @@ const Auth: React.FC = () => {
     ),
     registration: (
       <RegistrationForm
-        fetching={status === 'loading'}
+        fetching={registrationMeta.isLoading || getUserMeta.isLoading}
         initialValues={{
           password: '',
           confirmPassword: '',
@@ -85,9 +88,11 @@ const Auth: React.FC = () => {
     ),
     login: (
       <LoginForm
-        fetching={status === 'loading'}
+        fetching={loginMeta.isLoading || getUserMeta.isLoading}
         initialValues={{ password: '', email }}
-        onSubmit={handleLogin}
+        onSubmit={(data) => {
+          void handleLogin(data);
+        }}
         onCancel={() => {
           setAuthType('email');
         }}

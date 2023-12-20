@@ -3,7 +3,7 @@ import classes from 'src/features/chat/user/User.module.scss';
 import CustomAvatar from 'src/components/customAvatar/CustomAvatar';
 import Typography from 'src/components/typography/Typography';
 import CustomTextField from 'src/components/customTextField/CustomTextField';
-import { User } from 'src/app/app.types';
+import { User } from 'src/slices/app/app.types';
 import { clsx } from 'clsx';
 import tabsClasses from 'src/features/tabs/Tabs.module.scss';
 import { Controller, useForm } from 'react-hook-form';
@@ -12,6 +12,7 @@ import { required, userNameRule } from 'src/utils/validation';
 import SvgSelector from 'src/components/svgSelector/SvgSelector';
 import CustomIconButton from 'src/components/customIconButton/CustomIconButton';
 import ImageCropper from 'src/components/imageCropper/ImageCropper';
+import { dataUrlToFile } from 'src/utils';
 
 export interface ProfileFields {
   name: string;
@@ -25,7 +26,7 @@ interface ProfileEditFormProps extends Omit<Form<ProfileFields>, 'onSubmit'> {
   usernameFetching: boolean;
   usernameAvailable: boolean;
   onChangeUsername: (username: string) => void;
-  onSubmit: (data: ProfileFields, originalFilename: string) => void;
+  onSubmit: (data: ProfileFields, imgFile: File | undefined) => void;
 }
 
 const ProfileEditForm: React.FC<ProfileEditFormProps> = ({
@@ -38,6 +39,7 @@ const ProfileEditForm: React.FC<ProfileEditFormProps> = ({
   usernameFetching,
 }) => {
   const [open, setOpen] = useState(false);
+  const [imgFile, setImgFile] = useState<File | undefined>();
   const [imageUrl, setImageUrl] = useState<{
     src: string;
     originalFilename: string;
@@ -91,7 +93,7 @@ const ProfileEditForm: React.FC<ProfileEditFormProps> = ({
           onClick={(event) => {
             if (usernameFetching) return;
             void handleSubmit((data) => {
-              onSubmit(data, imageUrl?.originalFilename ?? 'unknown.jpg');
+              onSubmit(data, imgFile);
             })(event);
             reset(
               {},
@@ -129,8 +131,14 @@ const ProfileEditForm: React.FC<ProfileEditFormProps> = ({
               open={open}
               onClose={handleCloseCrop}
               imageUrl={imageUrl?.src ?? ''}
-              onSubmit={(file) => {
-                onChange(file);
+              onSubmit={(fileSrc) => {
+                onChange(fileSrc);
+                setImgFile(
+                  dataUrlToFile(
+                    fileSrc,
+                    imageUrl?.originalFilename ?? 'unknown.jpg'
+                  )
+                );
               }}
             />
           </>
@@ -223,7 +231,10 @@ const ProfileEditForm: React.FC<ProfileEditFormProps> = ({
               }}
               error={error !== undefined || usernameError}
               color={
-                isDirty && usernameAvailable && !usernameFetching
+                error === undefined &&
+                isDirty &&
+                !usernameError &&
+                !usernameFetching
                   ? 'success'
                   : undefined
               }

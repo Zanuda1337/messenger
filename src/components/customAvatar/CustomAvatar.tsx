@@ -12,7 +12,7 @@ const Size = {
 
 type Sizes = keyof typeof Size;
 
-interface AvatarProps {
+export interface AvatarProps {
   name: string;
   size?: Sizes;
   className?: string;
@@ -35,7 +35,7 @@ const CustomAvatar: React.FC<AvatarProps> = ({
         height: Size[size],
         fontSize: Size[size] * 0.45,
       }}
-    >{`${name.split(' ')[0][0].toUpperCase()}${
+    >{`${name.split(' ')[0][0]?.toUpperCase()}${
       name.split(' ')[1]?.at(0)?.toUpperCase() ?? ''
     }`}</Avatar>
   );

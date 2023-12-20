@@ -23,3 +23,7 @@ export interface StateBase {
 }
 
 export type StateStatus = 'idle' | 'loading' | 'failed';
+
+export interface WithId {
+  _id: string;
+}

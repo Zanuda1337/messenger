@@ -3,7 +3,7 @@ import ProfilePicture from 'src/features/chat/user/profilePicture/ProfilePicture
 import ListItem from 'src/components/listItem/ListItem';
 import CustomSwitch from 'src/components/customSwitch/CustomSwitch';
 import { useCopyToClipboard } from 'src/hooks';
-import { User as IUser } from 'src/app/app.types';
+import { User as IUser } from 'src/slices/app/app.types';
 import listItemClasses from 'src/components/listItem/ListItem.module.scss';
 import classes from './User.module.scss';
 import SvgSelector from 'src/components/svgSelector/SvgSelector';
@@ -29,9 +29,7 @@ const User: React.FC<UserProps> = ({
     };
   return (
     <>
-      <ProfilePicture
-        user={user}
-      />
+      <ProfilePicture user={user} />
       <div className={'list'}>
         <ListItem
           iconId="phone"
@@ -53,7 +51,7 @@ const User: React.FC<UserProps> = ({
           }}
           onClick={handleCopy('Username', `@${user?.username}`)}
         />
-        {user?.bio !== '' && (
+        {typeof user?.bio === 'string' && user?.bio.length > 0 && (
           <div className={classes.item}>
             <div className={listItemClasses.block}>
               <SvgSelector id={'info'} className={listItemClasses.svg} />
